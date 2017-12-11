@@ -1,0 +1,59 @@
+/* PAGE */
+
+#page {
+    padding: 0;
+}
+
+.navbar {
+    border-radius: 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+}
+
+/* PALETA DE CORES */
+
+.purple1 {
+    color: #fd5dff;
+}
+
+.purple2 {
+    color: #7d01a1; 
+}
+
+.green1 {
+    color: #03e571;
+    background-color: #03e571;
+}
+
+.green2 {
+    color: #00fe81;
+    background-color: #00fe81;
+}
+
+.red {
+    color: #fe4a72;
+}
+
+.blue1 {
+    color: #00ffed;
+    background-color: #00ffed;
+}
+
+.blue2 {
+    color: #00b0f5;
+}
+
+.gray {
+    color: #d9d9d9;
+}
+
+/* Home */
+.step 
+{
+    height: 20px;
+}
+
+.step div {
+    height: inherit;
+}

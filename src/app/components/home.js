@@ -1,12 +1,14 @@
 import React from 'react';
 
-export class Header extends React.Component {
+export class Home extends React.Component {
     
         render() {
             return (
-                <div>
-                    <p>new component</p>
-                    </div>
+                <div className="row step">
+                    <div className="col-sm-4 green1"></div>
+                    <div className="col-sm-4 green2"></div>
+                    <div className="col-sm-4 blue1"></div>
+                </div>
             );
         }
     
