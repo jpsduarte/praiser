@@ -1,11 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
+
+// const {
+//   CompositeDecorator,
+//   ContentBlock,
+//   ContentState,
+//   Editor,
+//   EditorState,
+//   convertFromHTML,
+//   convertToRaw,
+// } = Draft;  
 
 export class MyEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+
+
+
+    const state = ContentState.createFromText(
+      props.content
+    );
+
+    this.state = {editorState: EditorState.createWithContent(state)};
     this.focus = () => this.refs.editor.focus();        
     this.onChange = (editorState) => this.setState({editorState});
 
@@ -13,8 +30,7 @@ export class MyEditor extends React.Component {
     this.onTab = this._onTab.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
-    console.log(this.state);
-    //this.setState({editorState: this.props.content});
+
   }
 
   _handleKeyCommand(command, editorState) {

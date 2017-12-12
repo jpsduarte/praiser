@@ -22,7 +22,6 @@ export class Home extends React.Component {
 
         search(event) {
             this.setState({value: event.target.value});
-            console.log(this.state);
             
             if(!event.target.value) {
                 this.setState({matches: []});
@@ -41,12 +40,20 @@ export class Home extends React.Component {
 
             axios.get(`${this.state.API_URL}search.php?apiKey=${this.state.API_KEY}&musid=${id}`)
             .then(res => {
-              console.log(res); 
-              //this.setState({editorState: res.data.mus[0].text});
+               console.log(res); 
+              this.setState({lyric: res.data.mus[0].text, value: res.data.mus[0].name});
             });
         }
 
         render() {
+
+            const hasLyric = this.state.lyric;
+            let editor = null;
+
+            if(hasLyric) {
+                editor = <MyEditor content={this.state.lyric} />;
+            }
+
             return (
                 <div className="home">
                     <div className="row-fluid step">
@@ -66,8 +73,10 @@ export class Home extends React.Component {
                             )}
                             </ul>
                         </div>
-                       
-                        <MyEditor content={this.state.lyric} />
+                        
+                        
+                        {editor}
+                        
                             
                     </div>
                 </div>
