@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/jpsduarte/praiser#readme",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "draft-js": "^0.10.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
