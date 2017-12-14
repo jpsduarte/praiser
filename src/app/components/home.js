@@ -2,6 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import { MyEditor } from "./editor";
 
+// Require Editor JS files.
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+
+// Require Font Awesome.
+import 'font-awesome/css/font-awesome.css';
+
+import FroalaEditor from 'react-froala-wysiwyg';
+
 var pptx = require('pptxgenjs');
 
 export class Home extends React.Component {
@@ -33,7 +45,7 @@ export class Home extends React.Component {
 
             axios.get(`${this.state.API_URL}search.artmus?limit=7&q=${this.state.value}`)
             .then(res => {
-              //    console.log(res); 
+              console.log(res); 
               this.setState({matches: res.data.response.docs});
             });
         }
@@ -79,13 +91,6 @@ export class Home extends React.Component {
         render() {
 
             const hasLyric = this.state.lyric;
-            let editor = null;
-            let download = null;
-
-            if(hasLyric) {
-                editor = <MyEditor content={this.state.lyric} />;
-                download = <input type="button" value="Download" onClick={this.download} className="btn btn-default btn-lg btn-block" />;
-            }
 
             return (
                 <div className="home">
@@ -109,17 +114,24 @@ export class Home extends React.Component {
                                 </div>
                                 <ul>
                                 {this.state.matches.map(match =>
-                                    <li key={match.id}><a href="#" onClick={(e) => this.onSelect(match.id)}> {match.band} - {match  .title}</a></li>
+                                    match.title &&
+                                    <li key={match.id}><a href="#" onClick={(e) => this.onSelect(match.id)}> {match.band} - {match.title}</a></li>
                                 )}
                                 </ul>
                             </div>
                         </div>
                         
-                        {editor}
+                        {
+                            hasLyric &&
+                            <MyEditor content={this.state.lyric} />
+                        }
                         
                         <div className="row download">
                             <div className="col-md-4 col-md-offset-4">
-                                {download}
+                            {
+                               hasLyric &&
+                               <input type="button" value="Download" onClick={this.download} className="btn btn-default btn-lg btn-block" />
+                            }
                             </div>
                         </div>
                             

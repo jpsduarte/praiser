@@ -43,7 +43,7 @@ var config = {
     node: {
          fs: 'empty'
          //console: true        
-     },
+    },
     target: 'web',
     plugins: [
          //new webpack.ExternalsPlugin('commonjs')

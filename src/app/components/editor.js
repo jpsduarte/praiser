@@ -16,8 +16,6 @@ export class MyEditor extends React.Component {
   constructor(props) {
     super(props);
 
-
-
     const state = ContentState.createFromText(
       props.content
     );
@@ -30,7 +28,6 @@ export class MyEditor extends React.Component {
     this.onTab = this._onTab.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
-
   }
 
   _handleKeyCommand(command, editorState) {
@@ -65,8 +62,6 @@ export class MyEditor extends React.Component {
   _onBoldClick() {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
   }
-
- 
   
   render() {
     const {editorState} = this.state;
@@ -180,7 +175,7 @@ export class MyEditor extends React.Component {
     {label: 'Bold', style: 'BOLD'},
     {label: 'Italic', style: 'ITALIC'},
     {label: 'Underline', style: 'UNDERLINE'},
-    {label: 'Monospace', style: 'CODE'},
+    {label: 'Monospace', style: 'CODE'}
   ];
   const InlineStyleControls = (props) => {
     var currentStyle = props.editorState.getCurrentInlineStyle();
