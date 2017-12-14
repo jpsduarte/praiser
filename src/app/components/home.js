@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { MyEditor } from "./editor";
 
+var pptx = require('pptxgenjs');
+
 export class Home extends React.Component {
     
     constructor(props) {
@@ -18,6 +20,7 @@ export class Home extends React.Component {
 
         // This binding is necessary to make `this` work in the callback
         this.search = this.search.bind(this);
+        this.download = this.download.bind(this);
       }
 
         search(event) {
@@ -40,43 +43,85 @@ export class Home extends React.Component {
 
             axios.get(`${this.state.API_URL}search.php?apiKey=${this.state.API_KEY}&musid=${id}`)
             .then(res => {
-               console.log(res); 
+              //console.log(res); 
               this.setState({lyric: res.data.mus[0].text, value: res.data.mus[0].name});
             });
+        }
+
+        download() {
+            
+            console.log(pptx);
+
+            var slide = pptx.addNewSlide(pptx.masters.MASTER_SLIDE, { bkgd: 'CCC' });
+            
+            slide.bkgd = 'F1F1F1';
+            slide.color = 'red';
+            slide.bkgd = "#CCCCCC";// model.configuration.background;
+            slide.background = "#CCCCCC";// model.configuration.background;
+
+            slide.addText("<h1>Ed Sheeran</h1>",
+                {
+                    x: 0,
+                    y: 0,
+                    align:'c',
+                    valign: 'middle',
+                    margin:5,
+                    h: '100%',
+                    fill: "#EDEDED",
+                    font_size: "14",
+                    color: "BLACK"
+                });
+
+                pptx.save('Demo-Simple');
+
         }
 
         render() {
 
             const hasLyric = this.state.lyric;
             let editor = null;
+            let download = null;
 
             if(hasLyric) {
                 editor = <MyEditor content={this.state.lyric} />;
+                download = <input type="button" value="Download" onClick={this.download} className="btn btn-default btn-lg btn-block" />;
             }
 
             return (
                 <div className="home">
                     <div className="row-fluid step">
-                        <div className="col-sm-4 green1"></div>
-                        <div className="col-sm-4 green2"></div>
-                        <div className="col-sm-4 blue1"></div>
+                        <div className="col-xs-4 green1"></div>
+                        <div className="col-xs-4 green2"></div>
+                        <div className="col-xs-4 blue1"></div>
                     </div>
 
                     <div className="container">
-                         <div className="music-search">
-                            <div className="form-group">
-                                <input value={this.state.value} onChange={this.search} type="text" className="form-control input-lg" id="musicSearchInput" placeholder="Qual música você quer?" />
+                         <div className="row music-search">
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <input value={this.state.value} onChange={this.search} type="text" 
+                                        className="form-control input-lg" id="musicSearchInput" placeholder="Qual música você quer?" />
+                                        <span className="input-group-addon">
+                                            <span className="glyphicon glyphicon-search"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul>
+                                {this.state.matches.map(match =>
+                                    <li key={match.id}><a href="#" onClick={(e) => this.onSelect(match.id)}> {match.band} - {match  .title}</a></li>
+                                )}
+                                </ul>
                             </div>
-                            <ul>
-                            {this.state.matches.map(match =>
-                                <li key={match.id}><a href="#" onClick={(e) => this.onSelect(match.id)}> {match.band} - {match  .title}</a></li>
-                            )}
-                            </ul>
                         </div>
-                        
                         
                         {editor}
                         
+                        <div className="row download">
+                            <div className="col-md-4 col-md-offset-4">
+                                {download}
+                            </div>
+                        </div>
                             
                     </div>
                 </div>

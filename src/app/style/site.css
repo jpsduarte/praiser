@@ -68,7 +68,7 @@
 
 .music-search ul{
     margin: 0;
-
+    padding-left: 0;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -77,5 +77,23 @@
 .music-search ul li{
     list-style: none;
     font-size: 15px;
-    padding: 5px;
+    padding: 12px;
+    color: black;
+}
+
+.music-search ul li a {
+    color: black;
+}
+
+.music-search ul li:hover {
+    background-color: #d9d9d9;
+    text-decoration: none;
+}
+
+.music-search ul li a:hover {
+    text-decoration: none;
+}
+
+.download {
+    margin-top: 20px;
 }
