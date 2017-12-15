@@ -1,16 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
-
-// const {
-//   CompositeDecorator,
-//   ContentBlock,
-//   ContentState,
-//   Editor,
-//   EditorState,
-//   convertFromHTML,
-//   convertToRaw,
-// } = Draft;  
+import {Editor, EditorState, RichUtils, ContentState, Modifier} from 'draft-js';
 
 export class MyEditor extends React.Component {
   constructor(props) {
@@ -19,7 +9,7 @@ export class MyEditor extends React.Component {
     const state = ContentState.createFromText(
       props.content
     );
-
+   
     this.state = {editorState: EditorState.createWithContent(state)};
     this.focus = () => this.refs.editor.focus();        
     this.onChange = (editorState) => this.setState({editorState});
@@ -28,6 +18,18 @@ export class MyEditor extends React.Component {
     this.onTab = this._onTab.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    
+    if(nextProps.content != this.state.editorState.getCurrentContent()) {
+      console.log('is diferent');
+      console.log(nextProps.content);
+      console.log(this.state.editorState.getCurrentContent());
+      const contentState = ContentState.createFromText(nextProps.content);
+      const editorState = EditorState.push(this.state.editorState, contentState);
+      this.setState({ editorState });  
+    }
   }
 
   _handleKeyCommand(command, editorState) {

@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { MyEditor } from "./editor";
+import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
+import { setTimeout } from 'timers';
+import { debug } from 'util';
 
 var pptx = require('pptxgenjs');
 
 export class Home extends React.Component {
-    
+
     constructor(props) {
         super(props);
         
@@ -15,27 +18,40 @@ export class Home extends React.Component {
             value: '',
             timeout: null,
             matches: [],
-            lyric: ''
+            lyric: '',
+            hasEditor: false
         }; 
 
         // This binding is necessary to make `this` work in the callback
         this.search = this.search.bind(this);
         this.download = this.download.bind(this);
+        this.timeout = null;
+        
       }
 
         search(event) {
             this.setState({value: event.target.value});
-            
-            if(!event.target.value) {
-                this.setState({matches: []});
-                return;
-            }
 
-            axios.get(`${this.state.API_URL}search.artmus?limit=7&q=${this.state.value}`)
-            .then(res => {
-              console.log(res); 
-              this.setState({matches: res.data.response.docs});
-            });
+            if(this.timeout) {
+                clearTimeout(this.timeout);
+            }
+            
+            this.timeout = setTimeout(() => {
+
+                if(!this.state.value) {
+                    this.setState({matches: []});
+                    return;
+                }
+
+                axios.get(`${this.state.API_URL}search.artmus?limit=7&q=${this.state.value}`)
+                .then(res => {
+                //console.log(res); 
+                this.setState({matches: res.data.response.docs});
+                });
+
+            }, 1000);
+
+            clearTimeout(this.timeout);
         }
 
         onSelect(id) {
@@ -45,6 +61,14 @@ export class Home extends React.Component {
             .then(res => {
               //console.log(res); 
               this.setState({lyric: res.data.mus[0].text, value: res.data.mus[0].name});
+                
+              //change editor text
+              if(this.state.hasEditor) {
+                //console.log(editorState.getCurrentContent());
+              }
+                
+              this.setState({hasEditor: true});
+
             });
         }
 
@@ -77,7 +101,7 @@ export class Home extends React.Component {
         }
 
         render() {
-
+            
             const hasLyric = this.state.lyric;
 
             return (
