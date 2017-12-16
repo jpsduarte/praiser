@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Editor, EditorState, RichUtils, ContentState, Modifier} from 'draft-js';
+//import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 export class MyEditor extends React.Component {
   constructor(props) {
@@ -26,7 +28,10 @@ export class MyEditor extends React.Component {
       console.log('is diferent');
       console.log(nextProps.content);
       console.log(this.state.editorState.getCurrentContent());
-      const contentState = ContentState.createFromText(nextProps.content);
+
+      const blocksFromHtml = htmlToDraft(nextProps.content);
+      const { contentBlocks, entityMap } = blocksFromHtml.contentBlock;
+      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
       const editorState = EditorState.push(this.state.editorState, contentState);
       this.setState({ editorState });  
     }

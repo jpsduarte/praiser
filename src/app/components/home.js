@@ -6,6 +6,8 @@ import { setTimeout } from 'timers';
 import { debug } from 'util';
 
 var pptx = require('pptxgenjs');
+var CancelToken = axios.CancelToken;
+var source = CancelToken.source();
 
 export class Home extends React.Component {
 
@@ -16,7 +18,6 @@ export class Home extends React.Component {
             API_KEY: "816cb2693b51b9f3dbd1e1fbbb8f5d5e",
             API_URL : "https://api.vagalume.com.br/",
             value: '',
-            timeout: null,
             matches: [],
             lyric: '',
             hasEditor: false
@@ -25,33 +26,38 @@ export class Home extends React.Component {
         // This binding is necessary to make `this` work in the callback
         this.search = this.search.bind(this);
         this.download = this.download.bind(this);
-        this.timeout = null;
+        this.format = this.format.bind(this);
         
+        this.timeout = null;
+        this.requested = null; 
       }
 
         search(event) {
             this.setState({value: event.target.value});
 
-            if(this.timeout) {
-                clearTimeout(this.timeout);
+            if(!this.state.value) {
+                this.setState({matches: []});
+                return;
             }
+
+            if(this.requested) {
+                source.cancel('Operation canceled by the user.');
+            }
+
             
-            this.timeout = setTimeout(() => {
-
-                if(!this.state.value) {
-                    this.setState({matches: []});
-                    return;
-                }
-
-                axios.get(`${this.state.API_URL}search.artmus?limit=7&q=${this.state.value}`)
-                .then(res => {
+            axios.get(`${this.state.API_URL}search.artmus?limit=7&q=${this.state.value}`, { timeout: 1500, cancelToken: source.token })
+            .then(res => {
                 //console.log(res); 
                 this.setState({matches: res.data.response.docs});
-                });
-
-            }, 1000);
-
-            clearTimeout(this.timeout);
+            })
+            .then(thrown => {
+                if (axios.isCancel(thrown)) {
+                    console.log('Request canceled', thrown.message);
+                  } else {
+                    // handle error
+                  }              
+            });
+            this.requsted = true;
         }
 
         onSelect(id) {
@@ -60,7 +66,7 @@ export class Home extends React.Component {
             axios.get(`${this.state.API_URL}search.php?apiKey=${this.state.API_KEY}&musid=${id}`)
             .then(res => {
               //console.log(res); 
-              this.setState({lyric: res.data.mus[0].text, value: res.data.mus[0].name});
+              this.setState({lyric: this.format(res.data.mus[0].text), value: res.data.mus[0].name});
                 
               //change editor text
               if(this.state.hasEditor) {
@@ -70,6 +76,13 @@ export class Home extends React.Component {
               this.setState({hasEditor: true});
 
             });
+        }
+
+        format(content) {
+            var slides = content.split("\n\n");
+            slides[0] = slides[0] + '<hr />';
+            return slides[0];
+            
         }
 
         download() {
@@ -127,7 +140,7 @@ export class Home extends React.Component {
                                 <ul>
                                 {this.state.matches.map(match =>
                                     match.title &&
-                                    <li key={match.id}><a href="#" onClick={(e) => this.onSelect(match.id)}> {match.band} - {match.title}</a></li>
+                                    <li key={match.id} onClick={(e) => this.onSelect(match.id)}><a href="#"> {match.band} - {match.title}</a></li>
                                 )}
                                 </ul>
                             </div>
