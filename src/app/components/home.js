@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { MyEditor } from "./editor";
-import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
+//import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
 import { setTimeout } from 'timers';
 import { debug } from 'util';
 
@@ -80,8 +80,12 @@ export class Home extends React.Component {
 
         format(content) {
             var slides = content.split("\n\n");
-            slides[0] = slides[0] + '<hr />';
-            return slides[0];
+
+            for(var i = 0; i < slides.length; i++) {
+                slides[i] = slides[i] + '<hr />';                
+            }
+
+            return '<p>'+ slides.join('\n\n') + '</p>';
             
         }
 

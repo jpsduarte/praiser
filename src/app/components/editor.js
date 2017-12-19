@@ -1,18 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Editor, EditorState, RichUtils, ContentState, Modifier} from 'draft-js';
-//import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import {CompositeDecorator, Editor, EditorState, RichUtils, ContentState, Modifier, convertFromHTML} from 'draft-js';
+// import { Editor } from 'react-draft-wysiwyg';
+// import draftToHtml from 'draftjs-to-html';
+// import htmlToDraft from 'html-to-draftjs';
 
 export class MyEditor extends React.Component {
   constructor(props) {
     super(props);
 
+    const decorator = new CompositeDecorator([
+      {
+        strategy: findLinkEntities,
+        component: Link,
+      },
+      {
+        strategy: findImageEntities,
+        component: Image,
+      },
+      {
+        strategy: findHrEntities,
+        component: Hr,
+      },
+    ]);
+
     const state = ContentState.createFromText(
       props.content
     );
    
-    this.state = {editorState: EditorState.createWithContent(state)};
+    this.state = {editorState: EditorState.createWithContent(state, decorator)};
     this.focus = () => this.refs.editor.focus();        
     this.onChange = (editorState) => this.setState({editorState});
 
@@ -29,9 +45,27 @@ export class MyEditor extends React.Component {
       console.log(nextProps.content);
       console.log(this.state.editorState.getCurrentContent());
 
-      const blocksFromHtml = htmlToDraft(nextProps.content);
-      const { contentBlocks, entityMap } = blocksFromHtml.contentBlock;
-      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      //create from html
+      //debugger;
+      //const blocksFromHtml = htmlToDraft(nextProps.content);
+      //const { contentBlocks, entityMap } = blocksFromHtml.contentBlock;
+      //const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+     
+
+      const sampleMarkup =
+      '<b>Bold text</b>, <i>Italic text</i><br/ ><br /><hr />' +
+      '<a href="http://www.facebook.com">Example link</a>';
+    
+      
+      const blocksFromHTML = convertFromHTML(sampleMarkup);
+      const contentState = ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap,
+      );
+      
+      //create from text
+      //const contentState = ContentState.createFromText(nextProps.content);
+      
       const editorState = EditorState.push(this.state.editorState, contentState);
       this.setState({ editorState });  
     }
@@ -108,7 +142,75 @@ export class MyEditor extends React.Component {
     );
   
 }
-} 
+}
+
+function findLinkEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(
+    (character) => {
+      const entityKey = character.getEntity();
+      return (
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'LINK'
+      );
+    },
+    callback
+  );
+}
+
+const Link = (props) => {
+  const {url} = props.contentState.getEntity(props.entityKey).getData();
+  return (
+    <a href={url}>
+      {props.children}
+    </a>
+  );
+};
+
+function findHrEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(
+    (character) => {
+      const entityKey = character.getEntity();
+      return (
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'LINK'
+      );
+    },
+    callback
+  );
+}
+
+const Hr = (props) => {
+  return (
+    <a href={url}>
+    {props.children}
+  </a>
+  );
+};
+
+function findImageEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(
+    (character) => {
+      const entityKey = character.getEntity();
+      return (
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'IMAGE'
+      );
+    },
+    callback
+  );
+}
+
+const Image = (props) => {
+  const {
+    height,
+    src,
+    width,
+  } = props.contentState.getEntity(props.entityKey).getData();
+  return (
+    <img src={src} height={height} width={width} />
+  );
+};
+
 
   // Custom overrides for "code" style.
   const styleMap = {

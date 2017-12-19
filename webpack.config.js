@@ -17,9 +17,9 @@ var config = {
     },
     devtool: 'cheap-module-source-map',    
     module: {
-        // rules: [
-        //     { test: /\.css$/, use: 'css-loader' }
-        // ],
+         rules: [
+             { test: /\.css$/, use: 'css-loader' }
+         ],
         loaders: [
             {
                 test: /\.js?/,
