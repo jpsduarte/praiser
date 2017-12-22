@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
-
 import { Home } from "./components/home";
 
 class App extends React.Component {
@@ -11,7 +10,7 @@ class App extends React.Component {
         return (
             <div className="container-fluid" id="page">
                 <Header />
-                <Home />
+                <Home /> 
                 <Footer />
             </div>
         );

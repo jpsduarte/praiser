@@ -18,12 +18,13 @@ var config = {
     devtool: 'cheap-module-source-map',    
     module: {
          rules: [
-             { test: /\.css$/, use: 'css-loader' }
+             { test: /\.css$/, use: 'css-loader' },
+             { test: /\.js?/, use: "babel-loader" }
          ],
         loaders: [
             {
                 test: /\.js?/,
-                //exclude: /(node_modules)/,
+                exclude: /(node_modules)/,
                 include: SRC_DIR,
                 loader: "babel-loader",
                 query: {
@@ -41,7 +42,7 @@ var config = {
         ]
     },
     node: {
-         fs: 'empty'
+         //fs: 'empty'
          //console: true        
     },
     target: 'web',
