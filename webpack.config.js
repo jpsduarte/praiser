@@ -13,7 +13,7 @@ var config = {
         publicPath: "/app/"
     },
     resolve: {    
-        extensions: ['.Webpack.js', '.web.js', '.ts', '.js', '.tsx', '.jsx']
+        extensions: ['.Webpack.js', '.web.js', '.ts', '.js', '.tsx', '.jsx', '.css']
     },
     devtool: 'cheap-module-source-map',    
     module: {
@@ -47,6 +47,7 @@ var config = {
     },
     target: 'web',
     plugins: [
+         //new webpack.optimize.CommonsChunkPlugin("commons"),
          //new webpack.ExternalsPlugin('commonjs')
          new extractTextPlugin("app.css", { allChunks: true })
     ]//,

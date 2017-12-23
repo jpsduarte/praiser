@@ -105,3 +105,27 @@
 .download {
     margin-top: 20px;
 }
+
+.colors .square {
+    cursor: pointer;
+}
+
+.colors .square:focus {
+    outline: 1px solid blue;
+}
+
+.square {
+   height: 80px;
+   width: 80px; 
+   background: red;
+   
+}
+
+.rectangle {
+    height: 20px;
+    width: 60px;
+    background: black;
+    position: relative;
+    top: 30px;
+    left: 10px;
+}

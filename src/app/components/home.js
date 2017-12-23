@@ -4,6 +4,8 @@ import { MyEditor } from "./editor";
 //import {Editor, EditorState, RichUtils, ContentState} from 'draft-js';
 import { setTimeout } from 'timers';
 import { debug } from 'util';
+//require("css!../style/site.css"); 
+import style from '../style/site.css'
 
 // var pptx = require('pptxgenjs');
 var CancelToken = axios.CancelToken;
@@ -27,42 +29,14 @@ export class Home extends React.Component {
         this.search = this.search.bind(this);
         this.download = this.download.bind(this);
         this.format = this.format.bind(this);
+        this.setupSummernote = this.setupSummernote.bind(this);
         
         this.timeout = null;
         this.requested = null; 
       }
 
       componentDidMount() {
-        $('#summernote').summernote({
-            tooltip: 'auto',
-            airMode: false,
-            height: 300,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: false,                  // set focus to editable area after initializin
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['style','bold', 'italic', 'underline', 'clear']],
-                ['font', ['font']],
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['paragraph']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-              ],
-              styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-              fontNames: [
-                'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
-                'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
-                'Tahoma', 'Times New Roman', 'Verdana'
-              ],
-              fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36'],
-              colors: [
-                ['#000000', '#424242', '#636363', '#9C9C94', '#CEC6CE', '#EFEFEF', '#F7F7F7', '#FFFFFF'],
-                ['#FF0000', '#FF9C00', '#FFFF00', '#00FF00', '#00FFFF', '#0000FF', '#9C00FF', '#FF00FF'],
-                ['#F7C6CE', '#FFE7CE', '#FFEFC6', '#D6EFD6', '#CEDEE7', '#CEE7F7', '#D6D6E7', '#E7D6DE']
-              ],              
-            }); 
+       
       }
 
         search(event) {
@@ -123,7 +97,8 @@ export class Home extends React.Component {
               node.innerHTML = this.format(res.data.mus[0].text);
 
               //$('#summernote').summernote('reset');              
-            //   $('#summernote').summernote('fontSize', 24);              
+            //   $('#summernote').summernote('fontSize', 24);    
+              this.setupSummernote();          
               $('#summernote').summernote('insertNode', node);
              
               this.setState({hasEditor: true});
@@ -154,11 +129,12 @@ export class Home extends React.Component {
  
                 slide.bkgd = 'F1F1F1';
                 slide.color = 'red';
-                slide.bkgd = "#CCCCCC";// model.configuration.background;
-                slide.background = "#CCCCCC";// model.configuration.background;
+                slide.bkgd = "#CCCCCC";
+                slide.background = "#CCCCCC";
  
                 var slideText = slides[i];
                 var fontSize = 37;
+               
                 //size
                 if (slideText.indexOf('<h1>') != -1)
                 {
@@ -200,9 +176,36 @@ export class Home extends React.Component {
                     });
             }
 
-                pptx.save('Demo-Simple');
+            pptx.save('Demo-Simple');
 
         }
+
+        setupSummernote() {
+            $('#summernote').summernote({
+                tooltip: 'auto',
+                airMode: false,
+                height: 450,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: false,                  // set focus to editable area after initializin
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['style','bold', 'italic', 'underline', 'clear']],
+                    ['font', ['font']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['para', ['paragraph']],
+                    ['view', ['fullscreen']]
+                  ],
+                  styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+                  fontNames: [
+                    'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
+                    'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
+                    'Tahoma', 'Times New Roman', 'Verdana'
+                  ],
+                  fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36']          
+                }); 
+          }
 
         render() {
             
@@ -247,6 +250,48 @@ export class Home extends React.Component {
                             <div id="summernote"></div>
                         }
                            
+
+
+                        <div className="row colors">
+                            <div className="col-md-1 col-md-offset-3">
+                                <div className="square" tabindex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabindex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabindex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabindex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabindex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabindex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+
                         <div className="row download">
                             <div className="col-md-4 col-md-offset-4">
                             {
