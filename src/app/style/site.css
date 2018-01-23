@@ -49,6 +49,7 @@
 }
 
 /* Home */
+
 .step 
 {
     height: 20px;
@@ -128,4 +129,23 @@
     position: relative;
     top: 30px;
     left: 10px;
+}
+
+.black {
+    background: #000000;
+}
+
+.format-opt {
+    margin-top: 40px;
+    text-align: center;
+   
+}
+
+.opt-header {
+    background-color: #EDEDED;
+    padding: 4px;
+}
+
+.opt-content {
+    border:1px solid #EDEDED;
 }

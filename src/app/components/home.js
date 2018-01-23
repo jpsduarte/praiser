@@ -123,14 +123,25 @@ export class Home extends React.Component {
             var slides = markupStr.split('<hr>');   
 
             var pptx = new PptxGenJS();
+
+            // pptx.defineSlideMaster({
+            //     title: 'MASTER_SLIDE',
+            //     bkgd:  {
+            //         path: 'app/images/bkgr.gif'
+            //     },
+            //     slideNumber: { x:0.3, y:'90%' }
+            //   });
+              
             
             for (var i = 0; i < slides.length; i++) {
+                //var slide = pptx.addNewSlide('MASTER_SLIDE');
                 var slide = pptx.addNewSlide(pptx.masters.MASTER_SLIDE, { bkgd: 'CCC' });
+                
  
-                slide.bkgd = 'F1F1F1';
-                slide.color = 'red';
-                slide.bkgd = "#CCCCCC";
-                slide.background = "#CCCCCC";
+                //slide.bkgd = 'F1F1F1';
+                //slide.color = 'red';
+                //slide.bkgd = "#CCCCCC";
+                //slide.background = "#CCCCCC";
  
                 var slideText = slides[i];
                 var fontSize = 37;
@@ -161,19 +172,19 @@ export class Home extends React.Component {
                 slideText = slideText.replace("<br />", "\n");
                 slideText = slideText.replace(new RegExp("\\<.*?>", "gm"), "");
  
-                slide.addText(slideText,
-                    {
-                        x: 0,
-                        y: 0,
-                        font_face: 'arial',
-                        align:'c',
-                        valign: 'middle',
-                        margin:5,
-                        h: '100%',
-                        fill: 'CCCCCC',
-                        font_size: fontSize,
-                        color: '000000'
-                    });
+                // slide.addText(slideText,
+                //     {
+                //         x: 0,
+                //         y: 0,
+                //         font_face: 'arial',
+                //         align:'c',
+                //         valign: 'middle',
+                //         margin:5,
+                //         h: '100%',
+                //         fill: 'CCCCCC',
+                //         font_size: fontSize,
+                //         color: '000000'
+                //     });
             }
 
             pptx.save('Demo-Simple');
@@ -250,46 +261,58 @@ export class Home extends React.Component {
                             <div id="summernote"></div>
                         }
                            
-
-
-                        <div className="row colors">
-                            <div className="col-md-1 col-md-offset-3">
-                                <div className="square" tabindex="-1">
-                                    <div className="rectangle">
-                                    </div>
-                                </div>
+                        <div className="row format-opt">
+                            <div className="col-md-4">
+                                <div className="opt-header">Fonte</div>
+                                <div className="opt-content">Roboto Light</div>
                             </div>
-                            <div className="col-md-1">
-                            <div className="square" tabindex="-1">
-                                    <div className="rectangle">
-                                    </div>
-                                </div>
+                            <div className="col-md-4">
+                              <div className="opt-header">Background</div>
+                               <div className="opt-content">Roboto Light</div>
                             </div>
-                            <div className="col-md-1">
-                            <div className="square" tabindex="-1">
-                                    <div className="rectangle">
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-1">
-                            <div className="square" tabindex="-1">
-                                    <div className="rectangle">
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-1">
-                            <div className="square" tabindex="-1">
-                                    <div className="rectangle">
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-1">
-                            <div className="square" tabindex="-1">
-                                    <div className="rectangle">
-                                    </div>
-                                </div>
+                            <div className="col-md-4">
+                              <div className="opt-header">Formato</div>
+                              <div className="opt-content">Roboto Light</div>
                             </div>
                         </div>
+
+                        {/* <div className="row colors">
+                            <div className="col-md-1 col-md-offset-3">
+                                <div className="square">
+                                <img tabIndex="-1" src="http://media.giphy.com/media/xULW8kDbx8bmQFQKAw/200w_d.gif" width="80" height="80" alt="" />
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabIndex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabIndex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabIndex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabIndex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-1">
+                            <div className="square" tabIndex="-1">
+                                    <div className="rectangle">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
                        
 
                         <div className="row download">
