@@ -1,12 +1,9 @@
 import React from 'react';
 
 export class Footer extends React.Component {
-    
-        render() {
-            return (
-                <p></p>
-                
-            );
-        }
-    
+    render() {
+        return (
+            <p>Footer</p>
+        );
     }
+}
