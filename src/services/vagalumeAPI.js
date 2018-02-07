@@ -16,10 +16,26 @@ export default class VagalumeAPI {
         q: parameters.q,
         limit: parameters.limit
       },
-      timeout: 10000,
+      timeout: 1500,
       cancelToken: source.token
     }).then(res => {
       return res.data.response.docs
+    })
+  }
+
+  getMusicById(id) {
+    let CancelToken = axios.CancelToken
+    let source = CancelToken.source()
+
+    return axios.get(this.buildURL('search.php?'), {
+      params: {
+        apikey: this.apiKey,
+        musid: id
+      },
+      timeout: 1500,
+      cancelToken: source.token
+    }).then(res => {
+      return res.data.mus[0]
     })
   }
 }

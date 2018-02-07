@@ -30,7 +30,9 @@ class SearchBar extends React.Component {
   }
 
   musicSelected(id){
-    
+    new vagalumeAPI().getMusicById(id).then(res => {
+      this.setState({ lyric: res.text, value: res.name })
+    })
   }
 
   render() {
