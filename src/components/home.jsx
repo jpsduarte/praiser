@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import SearchBar from  './searchBar'
+import LyricEditor from './lyricEditor';
 
 import $ from 'jquery'
 import pptx from 'pptxgenjs'
@@ -11,13 +12,17 @@ class Home extends React.Component {
     super(props)
 
     this.state = {
-      lyric: 'lyric',
+      lyric: '',
       hasEditor: false
     }
 
     this.download = this.download.bind(this)
     this.format = this.format.bind(this)
     this.setupSummernote = this.setupSummernote.bind(this)
+  }
+
+  musicSelected = (musicLyrics) => {
+    this.setState({ lyric: musicLyrics })
   }
 
   onSelect(id) {
@@ -75,8 +80,6 @@ class Home extends React.Component {
     for (var i = 0; i < slides.length; i++) {
       //var slide = pptx.addNewSlide('MASTER_SLIDE');
       var slide = pptx.addNewSlide(pptx.masters.MASTER_SLIDE, { bkgd: '#000' })
-
-
       //slide.bkgd = 'F1F1F1';
       //slide.color = 'red';
       //slide.bkgd = "#CCCCCC";
@@ -84,7 +87,6 @@ class Home extends React.Component {
 
       var slideText = slides[i]
       var fontSize = 37
-
       //size
       if (slideText.indexOf('<h1>') != -1)
       {
@@ -170,7 +172,9 @@ class Home extends React.Component {
         </div>
 
         <div className="container">
-          <SearchBar />
+          <SearchBar musicSelected={this.musicSelected} />
+
+          <LyricEditor lyric={this.state.lyric}/>
 
           { hasLyric && <div id="summernote"></div> }
 
