@@ -2,9 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import SearchBar from  './searchBar'
 import LyricEditor from './lyricEditor';
+import pptx from 'pptxgenjs'
 
 import $ from 'jquery'
-import pptx from 'pptxgenjs'
 
 class Home extends React.Component {
 
@@ -13,16 +13,18 @@ class Home extends React.Component {
 
     this.state = {
       lyric: '',
+      formatedLyric: '',
       hasEditor: false
     }
-
-    this.download = this.download.bind(this)
-    this.format = this.format.bind(this)
-    this.setupSummernote = this.setupSummernote.bind(this)
   }
 
-  musicSelected = (musicLyrics) => {
-    this.setState({ lyric: musicLyrics })
+  musicSelected = (lyric) => {
+    this.setState({ lyric })
+  }
+
+  formatedLyric = (formatedLyric) => {
+    console.log('home - ', formatedLyric)
+    this.setState({ formatedLyric })
   }
 
   onSelect(id) {
@@ -30,12 +32,12 @@ class Home extends React.Component {
 
     axios.get(`${this.state.API_URL}search.php?apiKey=${this.state.API_KEY}&musid=${id}`)
       .then(res => {
-        //console.log(res);
+
         this.setState({lyric: this.format(res.data.mus[0].text), value: res.data.mus[0].name})
 
         //change editor text
         if(this.state.hasEditor) {
-          //console.log(editorState.getCurrentContent());
+
         }
 
         var node = document.createElement('div')
@@ -49,17 +51,6 @@ class Home extends React.Component {
         this.setState({hasEditor: true})
 
       })
-  }
-
-  format(content) {
-    var slides = content.split('\n\n')
-
-    for(var i = 0; i < slides.length; i++) {
-      slides[i] = slides[i] + '<hr />'
-    }
-
-    return  slides.join('\n\n')
-
   }
 
   download() {
@@ -133,33 +124,6 @@ class Home extends React.Component {
     pptx.save('Demo-Simple')
   }
 
-  setupSummernote() {
-    $('#summernote').summernote({
-      tooltip: 'auto',
-      airMode: false,
-      height: 450,                 // set editor height
-      minHeight: null,             // set minimum height of editor
-      maxHeight: null,             // set maximum height of editor
-      focus: false,                  // set focus to editable area after initializin
-      toolbar: [
-        // [groupName, [list of button]]
-        ['style', ['style','bold', 'italic', 'underline', 'clear']],
-        ['font', ['font']],
-        ['fontname', ['fontname']],
-        ['fontsize', ['fontsize']],
-        ['para', ['paragraph']],
-        ['view', ['fullscreen']]
-      ],
-      styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-      fontNames: [
-        'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
-        'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
-        'Tahoma', 'Times New Roman', 'Verdana'
-      ],
-      fontSizes: ['8', '9', '10', '11', '12', '14', '18', '24', '36']
-    })
-  }
-
   render() {
     const hasLyric = this.state.lyric
 
@@ -174,11 +138,7 @@ class Home extends React.Component {
         <div className="container">
           <SearchBar musicSelected={this.musicSelected} />
 
-          <LyricEditor lyric={this.state.lyric}/>
-
-          { hasLyric && <div id="summernote"></div> }
-
-          <div id="summernote"></div>
+          <LyricEditor lyric={this.state.lyric} formatedLyric={this.formatedLyric}/>
 
           <div className="row format-opt">
             <div className="col-md-4">
