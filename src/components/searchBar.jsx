@@ -46,7 +46,7 @@ class SearchBar extends React.Component {
                 className="form-control input-lg" id="musicSearchInput" placeholder="Qual música você quer?" />
               <span className="input-group-prepend">
                 <span className="input-group-text">
-                  <i class="fa fa-search"></i>
+                  <i className="fa fa-search"></i>
                 </span>
               </span>
             </div>
