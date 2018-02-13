@@ -1,6 +1,9 @@
 import React from 'react'
 import vagalumeAPI from '../services/vagalumeAPI'
 
+import { connect } from 'react-redux'
+import { addLyric } from '../actions'
+
 import 'font-awesome/css/font-awesome.css'
 
 class SearchBar extends React.Component {
@@ -32,7 +35,7 @@ class SearchBar extends React.Component {
   musicSelected(id){
     new vagalumeAPI().getMusicById(id).then(res => {
       this.setState({ lyric: res.text, value: res.name, matches: []})
-      this.props.musicSelected(this.state.lyric)
+      this.props.addLyric(this.state.lyric)
     })
   }
 
@@ -65,4 +68,10 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar
+function mapStateToProps(state) {
+  return {
+    lyrics: state
+  }
+}
+
+export default connect(mapStateToProps, { addLyric })(SearchBar)

@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import ReactSummernote from 'react-summernote';
 
+import { connect } from 'react-redux'
+import { formatLyric } from '../actions'
+
 import 'react-summernote/dist/react-summernote.css';
 import 'react-summernote/lang/summernote-pt-BR';
 
 import 'bootstrap';
 
 class LyricEditor extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      formatedLyric: ''
-    }
-
-    this.onChange = this.onChange.bind(this)
-  }
 
   componentWillReceiveProps(props) {
     let node = document.createElement('div')
@@ -24,18 +18,20 @@ class LyricEditor extends Component {
     ReactSummernote.insertNode(node)
   }
 
-  onChange(lyric) {
-    this.props.formatedLyric(lyric)
-  }
-
   formatSlides(lyric) {
-    let slides = lyric.split('\n\n')
+    let slides = lyric.split(' ')
 
     for(let i = 0; i < slides.length; i++) {
-      slides[i] = slides[i] + '<hr />'
+      slides[i] = slides[i] + `<hr />`
+
+      // <p style="text-align: center;">-------- <span style="color: red">Novo Slide - ${i} </span> --------</p> <hr />
     }
 
     return slides.join('\n\n')
+  }
+
+  onChange(lyric) {
+    this.props.formatLyric(lyric)
   }
 
   render() {
@@ -56,10 +52,16 @@ class LyricEditor extends Component {
             ['view', ['fullscreen', 'codeview']]
           ]
         }}
-        onChange={this.onChange}
+        onChange={this.onChange.bind(this)}
       />
-    );
+    )
   }
 }
 
-export default LyricEditor
+function mapStateToProps(state) {
+  return {
+    lyric: state
+  }
+}
+
+export default connect(mapStateToProps, { formatLyric })(LyricEditor)
