@@ -5,9 +5,7 @@ const lyric = (action) => {
 }
 
 const formatLyric = (action) => {
-  return {
-    formatedLyric: action.formatLyric
-  }
+  return action.formatLyric
 }
 
 const lyrics = (state = [], action) => {

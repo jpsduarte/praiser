@@ -10,6 +10,12 @@ import 'react-summernote/lang/summernote-pt-BR';
 import 'bootstrap';
 
 class LyricEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorAvailable: false
+    }
+  }
 
   componentWillReceiveProps(props) {
     let node = document.createElement('div')
@@ -19,7 +25,7 @@ class LyricEditor extends Component {
   }
 
   formatSlides(lyric) {
-    let slides = lyric.split(' ')
+    let slides = lyric.split('\n\n')
 
     for(let i = 0; i < slides.length; i++) {
       slides[i] = slides[i] + `<hr />`
@@ -31,7 +37,9 @@ class LyricEditor extends Component {
   }
 
   onChange(lyric) {
-    this.props.formatLyric(lyric)
+    if(this.state.editorAvailable) {
+      this.props.formatLyric(lyric)
+    }
   }
 
   render() {
