@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchBar from  './searchBar'
+import SearchBar from './searchBar'
 import LyricEditor from './lyricEditor';
 
 import { connect } from 'react-redux'
@@ -8,23 +8,11 @@ import pptx from 'pptxgenjs'
 
 class Home extends React.Component {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      hasEditor: false
-    }
-
-    this.downloadPresentation = this.downloadPresentation.bind(this)
-  }
-
   downloadPresentation() {
     let presentation = new pptx()
     presentation.setBrowser(true)
 
     let slidePages = this.props.formatedLyric.split('<hr>')
-
-    console.log('downloadPresentation', slidePages)
 
     presentation.getLayout('LAYOUT_16x9') //LAYOUT_16x9 or LAYOUT_4x3
 
@@ -176,7 +164,7 @@ class Home extends React.Component {
 
           <div className="row download">
             <div className="col-md-4 offset-md-4">
-              { <input type="button" value="Download" onClick={this.downloadPresentation} className="btn btn-default btn-lg btn-block" /> }
+              <input type="button" value="Download" onClick={this.downloadPresentation.bind(this)} className="btn btn-default btn-lg btn-block" />
             </div>
           </div>
         </div>
@@ -187,7 +175,7 @@ class Home extends React.Component {
 
 function mapStateToProp(state) {
   return {
-    // formatedLyric: state
+    formatedLyric: state
   }
 }
 

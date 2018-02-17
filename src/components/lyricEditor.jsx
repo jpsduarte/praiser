@@ -1,67 +1,61 @@
-import React, { Component } from 'react';
-import ReactSummernote from 'react-summernote';
+import React, { Component } from 'react'
+import ReactSummernote from 'react-summernote'
 
 import { connect } from 'react-redux'
 import { formatLyric } from '../actions'
 
-import 'react-summernote/dist/react-summernote.css';
-import 'react-summernote/lang/summernote-pt-BR';
+import 'react-summernote/dist/react-summernote.css'
+import 'react-summernote/lang/summernote-pt-BR'
 
 import 'bootstrap';
 
 class LyricEditor extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
-      editorAvailable: false
+      lyric: ''
     }
   }
 
   componentWillReceiveProps(props) {
-    let node = document.createElement('div')
-    node.innerHTML = this.formatSlides(props.lyric)
+    if(props.lyric !== this.state.lyric) {
+      let lyric = this.formatSlides(props.lyric)
 
-    ReactSummernote.insertNode(node)
+      this.props.formatLyric(lyric)
+      this.setState({ lyric })
+    }
   }
 
   formatSlides(lyric) {
     let slides = lyric.split('\n\n')
 
-    for(let i = 0; i < slides.length; i++) {
-      slides[i] = slides[i] + `<hr />`
-
-      // <p style="text-align: center;">-------- <span style="color: red">Novo Slide - ${i} </span> --------</p> <hr />
-    }
+    slides = slides.map((page) => {
+      return `${page} <hr>`
+    })
 
     return slides.join('\n\n')
   }
 
   onChange(lyric) {
-    if(this.state.editorAvailable) {
-      this.props.formatLyric(lyric)
-    }
+    this.setState({ lyric })
+    this.props.formatLyric(this.state.lyric)
   }
 
   render() {
     return (
       <ReactSummernote
-        value=""
+        value={this.state.lyric}
         options={{
           lang: 'pt-BR',
           height: 350,
           dialogsInBody: true,
           toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview']]
+            ['font', ['fontsize', 'bold', 'italic', 'underline']],
+            ['para', ['paragraph']]
           ]
         }}
-        onChange={this.onChange.bind(this)}
-      />
+        onChange={this.onChange.bind(this)} />
     )
   }
 }
