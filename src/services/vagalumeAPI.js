@@ -7,7 +7,7 @@ export default class VagalumeAPI {
     return `https://api.vagalume.com.br/${endpoint}`
   }
 
-  getArtMus(parameters){
+  getArtMus(parameters){ 
     let CancelToken = axios.CancelToken
     let source = CancelToken.source()
 
