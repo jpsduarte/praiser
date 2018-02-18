@@ -1,6 +1,10 @@
 import React from 'react'
-
 import vagalumeAPI from '../services/vagalumeAPI'
+
+import { connect } from 'react-redux'
+import { addLyric } from '../actions'
+
+import 'font-awesome/css/font-awesome.css'
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -9,8 +13,7 @@ class SearchBar extends React.Component {
     this.state = {
       value: '',
       matches: [],
-      lyric: '',
-      hasEditor: false
+      lyric: ''
     }
 
     this.search = this.search.bind(this)
@@ -31,7 +34,8 @@ class SearchBar extends React.Component {
 
   musicSelected(id){
     new vagalumeAPI().getMusicById(id).then(res => {
-      this.setState({ lyric: res.text, value: res.name })
+      this.setState({ lyric: res.text, value: res.name, matches: []})
+      this.props.addLyric(this.state.lyric)
     })
   }
 
@@ -43,8 +47,10 @@ class SearchBar extends React.Component {
             <div className="input-group">
               <input value={this.state.value} onChange={this.search} type="text"
                 className="form-control input-lg" id="musicSearchInput" placeholder="Qual música você quer?" />
-              <span className="input-group-addon">
-                <span className="glyphicon glyphicon-search"></span>
+              <span className="input-group-prepend">
+                <span className="input-group-text">
+                  <i className="fa fa-search"></i>
+                </span>
               </span>
             </div>
           </div>
@@ -62,4 +68,10 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar
+function mapStateToProps(state) {
+  return {
+    lyrics: state
+  }
+}
+
+export default connect(mapStateToProps, { addLyric })(SearchBar)

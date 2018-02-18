@@ -18,7 +18,7 @@
 }
 
 .purple2 {
-    color: #7d01a1; 
+    color: #7d01a1;
 }
 
 .green1 {
@@ -50,7 +50,7 @@
 
 /* Home */
 
-.step 
+.step
 {
     height: 20px;
 }
@@ -117,9 +117,9 @@
 
 .square {
    height: 80px;
-   width: 80px; 
+   width: 80px;
    background: red;
-   
+
 }
 
 .rectangle {
@@ -138,7 +138,7 @@
 .format-opt {
     margin-top: 40px;
     text-align: center;
-   
+
 }
 
 .opt-header {
@@ -148,4 +148,11 @@
 
 .opt-content {
     border:1px solid #EDEDED;
+}
+
+/* Overwrite summernote classes */
+
+body .popover,
+span.note-icon-caret {
+  display: none;
 }
