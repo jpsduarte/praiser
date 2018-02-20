@@ -1,153 +1,344 @@
+@import url('https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here|Montserrat|Nunito+Sans:600|Nunito:300|Raleway|Roboto:300|Source+Sans+Pro');
 /* PAGE */
 
 #page {
-    padding: 0;
+  padding: 0;
 }
 
 .navbar {
-    border-radius: 0;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    margin-bottom: 0px;
+  border-radius: 0;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 /* PALETA DE CORES */
 
 .purple1 {
-    color: #fd5dff;
+  color: #fd5dff;
 }
 
 .purple2 {
-    color: #7d01a1;
+  color: #7d01a1;
 }
 
 .green1 {
-    color: #03e571;
-    background-color: #03e571;
+  color: #03e571;
+  background-color: #03e571;
 }
 
 .green2 {
-    color: #00fe81;
-    background-color: #00fe81;
+  color: #00fe81;
+  background-color: #00fe81;
 }
 
 .red {
-    color: #fe4a72;
+  color: #fe4a72;
 }
 
 .blue1 {
-    color: #00ffed;
-    background-color: #00ffed;
+  color: #00ffed;
+  background-color: #00ffed;
 }
 
 .blue2 {
-    color: #00b0f5;
+  color: #00b0f5;
 }
 
 .gray {
-    color: #d9d9d9;
+  color: #d9d9d9;
 }
 
 /* Home */
 
-.step
-{
-    height: 20px;
+.step {
+  height: 20px;
 }
 
 .step div {
-    height: inherit;
+  height: inherit;
 }
 
 .music-search {
-    margin-top: 150px;
-    margin-bottom: 10px;
+  margin-top: 150px;
+  margin-bottom: 10px;
 }
 
-.music-search  .form-group{
-    margin-bottom: 0px;
+.music-search .form-group {
+  margin-bottom: 0px;
 }
 
-.music-search ul{
-    margin: 0;
-    padding-left: 0;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: white;
-    z-index: 1000000;
-    margin-left: 15px;
-    margin-right: 15px;
+.music-search ul {
+  margin: 0;
+  padding-left: 0;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000000;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
-.music-search ul li{
-    list-style: none;
-    font-size: 15px;
-    padding: 12px;
-    color: black;
+.music-search ul li {
+  list-style: none;
+  font-size: 15px;
+  padding: 12px;
+  color: black;
 }
 
 .music-search ul li a {
-    color: black;
+  color: black;
 }
 
 .music-search ul li:hover {
-    background-color: #d9d9d9;
-    text-decoration: none;
+  background-color: #d9d9d9;
+  text-decoration: none;
 }
 
 .music-search ul li a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .download {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .colors .square {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .colors .square:focus {
-    outline: 1px solid blue;
+  outline: 1px solid blue;
 }
 
-.square {
-   height: 80px;
-   width: 80px;
-   background: red;
-
-}
+/* .square {
+  height: 80px;
+  width: 80px;
+  background: red;
+} */
 
 .rectangle {
-    height: 20px;
-    width: 60px;
-    background: black;
-    position: relative;
-    top: 30px;
-    left: 10px;
+  height: 20px;
+  width: 60px;
+  background: black;
+  position: relative;
+  top: 30px;
+  left: 10px;
 }
 
 .black {
-    background: #000000;
+  background: #000000;
 }
 
-.format-opt {
-    margin-top: 40px;
-    text-align: center;
-
+.presentation-style {
+  margin-top: 40px;
+  text-align: center;
 }
 
-.opt-header {
-    background-color: #EDEDED;
-    padding: 4px;
+.style-header {
+  background-color: #e4e4e4;
+  padding: 5px 10px;
 }
 
-.opt-content {
-    border:1px solid #EDEDED;
+.style-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 50px;
+}
+
+.font .font-options {
+  background: transparent;
+}
+
+.font-options .font-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 7px 0;
+  height: 60px;
+  border-radius: 3px;
+}
+
+.font-options .font-card-body {
+  font-size: 14px;
+}
+
+.font-1 {
+  font-family: 'Roboto'
+}
+
+.font-2 {
+  font-family: 'Nunito'
+}
+
+.font-3 {
+  font-family: 'Nunito Sans';
+}
+
+.font-4 {
+  font-family: 'Just Me Again Down Here'
+}
+
+.font-5 {
+  font-family: 'Nunito Sans'
+}
+
+.font-6 {
+  font-family: 'Nunito Sans'
+}
+
+.font-7 {
+  font-family: 'Nunito Sans'
+}
+
+.font-8 {
+  font-family: 'Nunito Sans'
+}
+
+.font-9 {
+  font-family: 'Nunito Sans'
+}
+
+.primary-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000000;
+  height: 35px;
+  width: 100%;
+}
+
+.secondary-background {
+  background: #8393ca;
+  width: 60%;
+  height: 20px;
+}
+
+.background .background-options {
+  background: transparent;
+}
+
+.background-options .background-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 7px 0;
+  height: 80px;
+  border-radius: 3px;
+}
+
+.background-options .background-card-body {
+  width: 60%;
+  height: 20px;
+}
+
+.bkg-1 {
+  background: #000000;
+}
+
+.bkg-2 {
+  background: #f15959;
+}
+
+.bkg-3 {
+  background: #f1e859;
+}
+
+.bkg-4 {
+  background: #464545;
+}
+
+.bkg-5 {
+  background: #2b9929;
+}
+
+.bkg-6 {
+  background: #59a4f1;
+}
+
+.bkg-7 {
+  background: #d4b5d4;
+}
+
+.bkg-8 {
+  background: #5987f1;
+}
+
+.bkg-9 {
+  background: #f159bd;
+}
+
+.bkg-inner-1 {
+  background: #8393ca;
+}
+
+.bkg-inner-2 {
+  background: #11f7fa;
+}
+
+.bkg-inner-3 {
+  background: #040404;
+}
+
+.bkg-inner-4 {
+  background: #fdfdfe;
+}
+
+.bkg-inner-5 {
+  background: #f3fbc7;
+}
+
+.bkg-inner-6 {
+  background: #fcfefe;
+}
+
+.bkg-inner-7 {
+  background: #11319d;
+}
+
+.bkg-inner-8 {
+  background: #f7fa11;
+}
+
+.bkg-inner-9 {
+  background: #050300;
+}
+
+.format .style-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.format .wide,
+.format .square {
+  border: 1.8px solid black;
+  border-radius: 4px;
+  opacity: .6;
+}
+
+/* .format .wide:hover, */
+
+.format .wide:active,
+/* .format .square:hover, */
+
+.format .square:active {
+  opacity: 1;
+}
+
+.format .wide {
+  padding: 1px 10px;
+}
+
+.format .square {
+  padding: 1px 6px;
 }
 
 /* Overwrite summernote classes */

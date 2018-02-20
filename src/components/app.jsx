@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Header from './header'
-import Home from './home'
+import DownloadPresentation from './downloadPresentation'
 import Footer from './footer'
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
         return(
             <div>
                 <Header />
-                <Home />
+                <DownloadPresentation />
                 <Footer />
             </div>
         )

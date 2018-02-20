@@ -9,8 +9,6 @@ const formatLyric = (action) => {
 }
 
 const lyrics = (state = [], action) => {
-  let lyrics = null
-
   switch(action.type) {
     case constants.ADD_LYRIC:
       return lyric(action)
