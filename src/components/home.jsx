@@ -98,11 +98,14 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        <div className="row step">
-          <div className="col-4 green1"></div>
-          <div className="col-4 green2"></div>
-          <div className="col-4 blue1"></div>
+        <div className="container-fluid">
+          <div className="row step">
+            <div className="col-sm-4 green1"></div>
+            <div className="col-sm-4 green2"></div>
+            <div className="col-sm-4 blue1"></div>
+           </div>
         </div>
+        
 
         <div className="container">
           <SearchBar />
