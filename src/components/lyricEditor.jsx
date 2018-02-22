@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactSummernote from 'react-summernote'
 
 import { connect } from 'react-redux'
-import { formatLyric } from '../actions'
+import { formatLyric } from '../actionsCreators'
 
 import 'react-summernote/dist/react-summernote.css'
 import 'react-summernote/lang/summernote-pt-BR'
@@ -61,9 +61,7 @@ class LyricEditor extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    lyric: state
-  }
+  return { lyric: state }
 }
 
 export default connect(mapStateToProps, { formatLyric })(LyricEditor)

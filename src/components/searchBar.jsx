@@ -2,7 +2,7 @@ import React from 'react'
 import vagalumeAPI from '../services/vagalumeAPI'
 
 import { connect } from 'react-redux'
-import { addLyric } from '../actions'
+import { addLyric } from '../actionsCreators'
 
 import 'font-awesome/css/font-awesome.css'
 
