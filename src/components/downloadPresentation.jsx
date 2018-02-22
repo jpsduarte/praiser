@@ -214,63 +214,20 @@ class DownloadPresentation extends Component {
 
                   <div className="background-options">
                     <div className="row">
-                      <div className="col-md-4">
-                        <div className="background-card bkg-1">
-                          <div className="background-card-body bkg-inner-1"></div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="background-card bkg-2">
-                          <div className="background-card-body bkg-inner-2"></div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="background-card bkg-3">
-                          <div className="background-card-body bkg-inner-3"></div>
-                        </div>
-                      </div>
+                      <PresentationBackground bg="#000000" inner="#8393ca"/>
+                      <PresentationBackground bg="#f15959" inner="#11f7fa"/>
+                      <PresentationBackground bg="#f1e859" inner="#040404"/>
                     </div>
 
                     <div className="row">
-                      <div className="col-md-4">
-                        <div className="background-card bkg-4">
-                          <div className="background-card-body bkg-inner-4"></div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="background-card bkg-5">
-                          <div className="background-card-body bkg-inner-5"></div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="background-card bkg-6">
-                          <div className="background-card-body bkg-inner-6"></div>
-                        </div>
-                      </div>
+                      <PresentationBackground bg="#000000" inner="#8393ca"/>
+                      <PresentationBackground bg="#f15959" inner="#11f7fa"/>
+                      <PresentationBackground bg="#f1e859" inner="#040404"/>
                     </div>
-
                     <div className="row">
-                      <div className="col-md-4">
-                        <div className="background-card bkg-7">
-                          <div className="background-card-body bkg-inner-7"></div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="background-card bkg-8">
-                          <div className="background-card-body bkg-inner-8"></div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="background-card bkg-9">
-                          <div className="background-card-body bkg-inner-9"></div>
-                        </div>
-                      </div>
+                      <PresentationBackground bg="#000000" inner="#8393ca"/>
+                      <PresentationBackground bg="#f15959" inner="#11f7fa"/>
+                      <PresentationBackground bg="#f1e859" inner="#040404"/>
                     </div>
                   </div>
                 </div>
@@ -282,7 +239,7 @@ class DownloadPresentation extends Component {
 
                   <div className="style-content">
                     <div className="wide">16:9</div>
-                    <dic className="square">4:3</dic>
+                    <div className="square">4:3</div>
                   </div>
                 </div>
               </div>
