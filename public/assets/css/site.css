@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here|Montserrat|Nunito+Sans:600|Nunito:300|Raleway|Roboto:300|Source+Sans+Pro');
 /* PAGE */
 
 #page {
@@ -156,6 +155,10 @@
   background: transparent;
 }
 
+.default-font {
+  font-family: 'Roboto'
+}
+
 .font-options .font-card {
   display: flex;
   justify-content: center;
@@ -170,42 +173,6 @@
   font-size: 14px;
 }
 
-.font-1 {
-  font-family: 'Roboto'
-}
-
-.font-2 {
-  font-family: 'Nunito'
-}
-
-.font-3 {
-  font-family: 'Nunito Sans';
-}
-
-.font-4 {
-  font-family: 'Just Me Again Down Here'
-}
-
-.font-5 {
-  font-family: 'Nunito Sans'
-}
-
-.font-6 {
-  font-family: 'Nunito Sans'
-}
-
-.font-7 {
-  font-family: 'Nunito Sans'
-}
-
-.font-8 {
-  font-family: 'Nunito Sans'
-}
-
-.font-9 {
-  font-family: 'Nunito Sans'
-}
-
 .primary-background {
   display: flex;
   justify-content: center;
@@ -214,9 +181,17 @@
   width: 100%;
 }
 
+.primary-background.default-bg {
+  background-color: #000000;
+}
+
 .secondary-background {
   width: 60%;
   height: 20px;
+}
+
+.secondary-background.default-inner {
+  background-color: #8393ca;
 }
 
 .background .background-options {
@@ -238,78 +213,6 @@
   height: 20px;
 }
 
-.bkg-1 {
-  background: #000000;
-}
-
-.bkg-2 {
-  background: #f15959;
-}
-
-.bkg-3 {
-  background: #f1e859;
-}
-
-.bkg-4 {
-  background: #464545;
-}
-
-.bkg-5 {
-  background: #2b9929;
-}
-
-.bkg-6 {
-  background: #59a4f1;
-}
-
-.bkg-7 {
-  background: #d4b5d4;
-}
-
-.bkg-8 {
-  background: #5987f1;
-}
-
-.bkg-9 {
-  background: #f159bd;
-}
-
-.bkg-inner-1 {
-  background: #8393ca;
-}
-
-.bkg-inner-2 {
-  background: #11f7fa;
-}
-
-.bkg-inner-3 {
-  background: #040404;
-}
-
-.bkg-inner-4 {
-  background: #fdfdfe;
-}
-
-.bkg-inner-5 {
-  background: #f3fbc7;
-}
-
-.bkg-inner-6 {
-  background: #fcfefe;
-}
-
-.bkg-inner-7 {
-  background: #11319d;
-}
-
-.bkg-inner-8 {
-  background: #f7fa11;
-}
-
-.bkg-inner-9 {
-  background: #050300;
-}
-
 .format .style-content {
   display: flex;
   justify-content: space-around;
@@ -323,10 +226,8 @@
 }
 
 /* .format .wide:hover, */
-
 .format .wide:active,
 /* .format .square:hover, */
-
 .format .square:active {
   opacity: 1;
 }

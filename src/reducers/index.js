@@ -7,12 +7,8 @@ const initialState = {
     bg: '',
     inner: ''
   },
-  fontStyle: {
-    font: ''
-  },
-  screenStyle: {
-    screenFormat: ''
-  }
+  fontStyle: '',
+  screenStyle: ''
 }
 
 const praiserApp = (state = initialState, action) => {
@@ -25,6 +21,9 @@ const praiserApp = (state = initialState, action) => {
 
     case type.BACKGROUND_STYLE:
       return changeBackground(state, action)
+
+    case type.FONT_STYLE:
+      return changeFont(state, action)
 
     default:
       return state
@@ -46,6 +45,12 @@ const formatLyric = (state, action) => {
 const changeBackground = (state, action) => {
   return Object.assign({}, state, {
     backgroundStyle: action.backgroundStyle
+  })
+}
+
+const changeFont = (state, action) => {
+  return Object.assign({}, state, {
+    fontStyle: action.fontStyle
   })
 }
 

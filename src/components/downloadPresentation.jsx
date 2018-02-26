@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import SearchBar from './searchBar'
 import LyricEditor from './lyricEditor';
+import PresentationBackground from './presentationOptions/presentationBackground';
+import PresentationFont from './presentationOptions/presentationFont'
 
 import { connect } from 'react-redux'
 
 import pptx from 'pptxgenjs'
-import PresentationBackground from './presentationOptions/presentationBackground';
 
 class DownloadPresentation extends Component {
 
@@ -32,7 +33,7 @@ class DownloadPresentation extends Component {
         valign: 'middle',
         // fill: this.props.state.backgroundStyle.inner,
         fontSize: 24,
-        fontFace: 'Nunito Sans',
+        fontFace: this.props.state.fontStyle,
         isTextBox: true
       })
     }
@@ -98,6 +99,34 @@ class DownloadPresentation extends Component {
   }
 
   render() {
+    let selectedFont = null
+
+    if (this.props.state.fontStyle !== '') {
+      selectedFont = <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
+                      { this.props.state.fontStyle }
+                     </div>
+    }
+    else {
+      selectedFont = <div className="style-content default-font">Roboto Light</div>
+    }
+
+    let selectedBackground = null
+
+    if (this.props.state.backgroundStyle.bg !== '') {
+      selectedBackground = <div className="style-content">
+                              <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
+                                <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
+                              </div>
+                            </div>
+    }
+    else {
+      selectedBackground = <div className="style-content">
+                              <div className="primary-background default-bg">
+                                <div className="secondary-background default-inner"></div>
+                              </div>
+                            </div>
+    }
+
     return (
       <div className="home">
         <div className="row step">
@@ -117,85 +146,25 @@ class DownloadPresentation extends Component {
                 <div className="font">
                   <div className="style-header">Fonte</div>
 
-                  <div className="style-content">Roboto Light</div>
+                  { selectedFont }
 
                   <div className="font-options">
                     <div className="row">
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-1">
-                            Roboto Light
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-2">
-                            Proxima Nova
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-3">
-                            ADAM
-                          </div>
-                        </div>
-                      </div>
+                      <PresentationFont font="Roboto Light" />
+                      <PresentationFont font="Calibri" />
+                      <PresentationFont font="Arial Black" />
                     </div>
 
                     <div className="row">
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-4">
-                            Trashhand
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-5">
-                            MOON
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-6">
-                            SANTANELLI
-                          </div>
-                        </div>
-                      </div>
+                      <PresentationFont font="Comic Sans" />
+                      <PresentationFont font="Time News Roman" />
+                      <PresentationFont font="Roboto Light" />
                     </div>
 
                     <div className="row">
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-7">
-                            Seravek
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-8">
-                            Reef
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="col-md-4">
-                        <div className="font-card">
-                          <div className="font-card-body font-9">
-                            Core Circus
-                          </div>
-                        </div>
-                      </div>
+                      <PresentationFont font="Roboto Light" />
+                      <PresentationFont font="Roboto Light" />
+                      <PresentationFont font="Roboto Light" />
                     </div>
                   </div>
                 </div>
@@ -205,11 +174,7 @@ class DownloadPresentation extends Component {
                 <div className="background">
                   <div className="style-header">Background</div>
 
-                  <div className="style-content">
-                    <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
-                      <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
-                    </div>
-                  </div>
+                  {selectedBackground}
 
                   <div className="background-options">
                     <div className="row">
@@ -223,6 +188,7 @@ class DownloadPresentation extends Component {
                       <PresentationBackground bg="#2b9929" inner="#f3fbc7"/>
                       <PresentationBackground bg="#59a4f1" inner="#fcfefe"/>
                     </div>
+
                     <div className="row">
                       <PresentationBackground bg="#d4b5d4" inner="#11319d"/>
                       <PresentationBackground bg="#5987f1" inner="#f7fa11"/>
@@ -247,8 +213,7 @@ class DownloadPresentation extends Component {
 
           <section className="row download">
             <div className="col-md-4 offset-md-4">
-              <input type="button" className="btn btn-default btn-lg btn-block" value="Download" onClick={this.downloadPresentation.bind(this)}
-              />
+              <input type="button" className="btn btn-default btn-lg btn-block" value="Download" onClick={this.downloadPresentation.bind(this)} />
             </div>
           </section>
         </div>

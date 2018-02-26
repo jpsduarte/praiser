@@ -26,3 +26,12 @@ export const changeBackground = (backgroundStyle) => {
 
   return action
 }
+
+export const changeFont = (fontStyle) => {
+  const action = {
+    type: type.FONT_STYLE,
+    fontStyle
+  }
+
+  return action
+}
