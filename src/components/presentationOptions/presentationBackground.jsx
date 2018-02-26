@@ -19,8 +19,4 @@ class PresentationBackground extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { state }
-}
-
-export default connect(mapStateToProps, { changeBackground })(PresentationBackground)
+export default connect(null, { changeBackground })(PresentationBackground)

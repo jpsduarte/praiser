@@ -33,7 +33,6 @@ class DownloadPresentation extends Component {
         h: '10%',
         align:'left',
         valign: 'middle',
-        // fill: this.props.state.backgroundStyle.inner,
         fontSize: 24,
         fontFace: this.props.state.fontStyle,
         isTextBox: true

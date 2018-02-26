@@ -68,10 +68,4 @@ class SearchBar extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    lyrics: state
-  }
-}
-
-export default connect(mapStateToProps, { addLyric })(SearchBar)
+export default connect(null, { addLyric })(SearchBar)
