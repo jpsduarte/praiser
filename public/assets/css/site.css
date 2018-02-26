@@ -210,13 +210,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000000;
   height: 35px;
   width: 100%;
 }
 
 .secondary-background {
-  background: #8393ca;
   width: 60%;
   height: 20px;
 }

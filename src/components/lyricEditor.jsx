@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactSummernote from 'react-summernote'
 
 import { connect } from 'react-redux'
-import { formatLyric } from '../actionsCreators'
+import { formatLyric, addLyric } from '../actionsCreators'
 
 import 'react-summernote/dist/react-summernote.css'
 import 'react-summernote/lang/summernote-pt-BR'
@@ -19,11 +19,14 @@ class LyricEditor extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if(props.lyric !== this.state.lyric) {
-      let lyric = this.formatSlides(props.lyric)
+    if(props.state.lyric !== "") {
+      let lyric = this.formatSlides(props.state.lyric)
 
       this.props.formatLyric(lyric)
+
       this.setState({ lyric })
+
+      this.props.addLyric("")
     }
   }
 
@@ -61,7 +64,7 @@ class LyricEditor extends Component {
 }
 
 function mapStateToProps(state) {
-  return { lyric: state }
+  return { state }
 }
 
-export default connect(mapStateToProps, { formatLyric })(LyricEditor)
+export default connect(mapStateToProps, { formatLyric, addLyric })(LyricEditor)

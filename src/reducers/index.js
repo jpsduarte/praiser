@@ -1,31 +1,52 @@
 import * as type from '../actionTypes'
 
-const lyrics = (state = {}, action) => {
+const initialState = {
+  lyric: '',
+  formattedLyric: '',
+  backgroundStyle: {
+    bg: '',
+    inner: ''
+  },
+  fontStyle: {
+    font: ''
+  },
+  screenStyle: {
+    screenFormat: ''
+  }
+}
+
+const praiserApp = (state = initialState, action) => {
   switch(action.type) {
     case type.ADD_LYRIC:
-      return lyric(action)
+      return lyric(state, action)
 
     case type.FORMAT_LYRIC:
-      return formatLyric(action)
+      return formatLyric(state, action)
 
     case type.BACKGROUND_STYLE:
-      return changeBackground(action)
+      return changeBackground(state, action)
 
     default:
       return state
   }
 }
 
-const lyric = (action) => {
-  return action.lyric
+const lyric = (state, action) => {
+  return Object.assign({}, state, {
+    lyric: action.lyric
+  })
 }
 
-const formatLyric = (action) => {
-  return action.formatLyric
+const formatLyric = (state, action) => {
+  return Object.assign({}, state, {
+    formattedLyric: action.formatLyric
+  })
 }
 
-const changeBackground = (action) => {
-  return action.backgroundStyle
+const changeBackground = (state, action) => {
+  return Object.assign({}, state, {
+    backgroundStyle: action.backgroundStyle
+  })
 }
 
-export default lyrics
+export default praiserApp

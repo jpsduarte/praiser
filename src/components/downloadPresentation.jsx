@@ -13,16 +13,15 @@ class DownloadPresentation extends Component {
     let presentation = new pptx()
     presentation.setBrowser(true)
 
-    let slidePages = this.props.formatedLyric.split('<hr>')
+    let slidePages = this.props.state.formattedLyric.split('<hr>')
 
     presentation.getLayout('LAYOUT_16x9') //LAYOUT_16x9 or LAYOUT_4x3
 
     for (let page = 0; page < slidePages.length; page++) {
       let slide = presentation.addNewSlide()
 
-      slide.back = '#000000'
-      slide.color = 'FFFFFF'
-
+      slide.back = this.props.state.backgroundStyle.bg
+      slide.color = this.props.state.backgroundStyle.inner.replace('#','')
 
       slide.addText(slidePages[page], {
         x: 0,
@@ -31,7 +30,7 @@ class DownloadPresentation extends Component {
         h: '10%',
         align:'left',
         valign: 'middle',
-        // fill: '72f970',
+        // fill: this.props.state.backgroundStyle.inner,
         fontSize: 24,
         fontFace: 'Nunito Sans',
         isTextBox: true
@@ -207,8 +206,8 @@ class DownloadPresentation extends Component {
                   <div className="style-header">Background</div>
 
                   <div className="style-content">
-                    <div className="primary-background">
-                      <div className="secondary-background"></div>
+                    <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
+                      <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
                     </div>
                   </div>
 
@@ -220,14 +219,14 @@ class DownloadPresentation extends Component {
                     </div>
 
                     <div className="row">
-                      <PresentationBackground bg="#000000" inner="#8393ca"/>
-                      <PresentationBackground bg="#f15959" inner="#11f7fa"/>
-                      <PresentationBackground bg="#f1e859" inner="#040404"/>
+                      <PresentationBackground bg="#464545" inner="#fdfdfe"/>
+                      <PresentationBackground bg="#2b9929" inner="#f3fbc7"/>
+                      <PresentationBackground bg="#59a4f1" inner="#fcfefe"/>
                     </div>
                     <div className="row">
-                      <PresentationBackground bg="#000000" inner="#8393ca"/>
-                      <PresentationBackground bg="#f15959" inner="#11f7fa"/>
-                      <PresentationBackground bg="#f1e859" inner="#040404"/>
+                      <PresentationBackground bg="#d4b5d4" inner="#11319d"/>
+                      <PresentationBackground bg="#5987f1" inner="#f7fa11"/>
+                      <PresentationBackground bg="#f159bd" inner="#050300"/>
                     </div>
                   </div>
                 </div>
@@ -259,9 +258,7 @@ class DownloadPresentation extends Component {
 }
 
 function mapStateToProp(state) {
-  return {
-    formatedLyric: state
-  }
+  return { state }
 }
 
 export default connect(mapStateToProp, null)(DownloadPresentation)
