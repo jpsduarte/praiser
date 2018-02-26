@@ -3,6 +3,7 @@ import SearchBar from './searchBar'
 import LyricEditor from './lyricEditor';
 import PresentationBackground from './presentationOptions/presentationBackground';
 import PresentationFont from './presentationOptions/presentationFont'
+import PresentationFormat from './presentationOptions/presentationFormat'
 
 import { connect } from 'react-redux'
 
@@ -16,7 +17,8 @@ class DownloadPresentation extends Component {
 
     let slidePages = this.props.state.formattedLyric.split('<hr>')
 
-    presentation.getLayout('LAYOUT_16x9') //LAYOUT_16x9 or LAYOUT_4x3
+    let slideFormat = this.props.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3'
+    presentation.getLayout(slideFormat)
 
     for (let page = 0; page < slidePages.length; page++) {
       let slide = presentation.addNewSlide()
@@ -99,34 +101,6 @@ class DownloadPresentation extends Component {
   }
 
   render() {
-    let selectedFont = null
-
-    if (this.props.state.fontStyle !== '') {
-      selectedFont = <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
-                      { this.props.state.fontStyle }
-                     </div>
-    }
-    else {
-      selectedFont = <div className="style-content default-font">Roboto Light</div>
-    }
-
-    let selectedBackground = null
-
-    if (this.props.state.backgroundStyle.bg !== '') {
-      selectedBackground = <div className="style-content">
-                              <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
-                                <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
-                              </div>
-                            </div>
-    }
-    else {
-      selectedBackground = <div className="style-content">
-                              <div className="primary-background default-bg">
-                                <div className="secondary-background default-inner"></div>
-                              </div>
-                            </div>
-    }
-
     return (
       <div className="home">
         <div className="row step">
@@ -146,7 +120,13 @@ class DownloadPresentation extends Component {
                 <div className="font">
                   <div className="style-header">Fonte</div>
 
-                  { selectedFont }
+                  {this.props.state.fontStyle ? (
+                    <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
+                      { this.props.state.fontStyle }
+                    </div>
+                  ) : (
+                    <div className="style-content default-font">Roboto Light</div>
+                  )}
 
                   <div className="font-options">
                     <div className="row">
@@ -156,15 +136,15 @@ class DownloadPresentation extends Component {
                     </div>
 
                     <div className="row">
-                      <PresentationFont font="Comic Sans" />
-                      <PresentationFont font="Time News Roman" />
                       <PresentationFont font="Roboto Light" />
+                      <PresentationFont font="Calibri" />
+                      <PresentationFont font="Arial Black" />
                     </div>
 
                     <div className="row">
                       <PresentationFont font="Roboto Light" />
-                      <PresentationFont font="Roboto Light" />
-                      <PresentationFont font="Roboto Light" />
+                      <PresentationFont font="Calibri" />
+                      <PresentationFont font="Arial Black" />
                     </div>
                   </div>
                 </div>
@@ -174,7 +154,19 @@ class DownloadPresentation extends Component {
                 <div className="background">
                   <div className="style-header">Background</div>
 
-                  {selectedBackground}
+                  {this.props.state.backgroundStyle.bg ? (
+                    <div className="style-content">
+                      <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
+                        <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="style-content">
+                      <div className="primary-background default-bg">
+                        <div className="secondary-background default-inner"></div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="background-options">
                     <div className="row">
@@ -203,8 +195,8 @@ class DownloadPresentation extends Component {
                   <div className="style-header">Formato</div>
 
                   <div className="style-content">
-                    <div className="wide">16:9</div>
-                    <div className="square">4:3</div>
+                    <PresentationFormat format="16:9"/>
+                    <PresentationFormat format="4:9"/>
                   </div>
                 </div>
               </div>
@@ -213,7 +205,7 @@ class DownloadPresentation extends Component {
 
           <section className="row download">
             <div className="col-md-4 offset-md-4">
-              <input type="button" className="btn btn-default btn-lg btn-block" value="Download" onClick={this.downloadPresentation.bind(this)} />
+                { this.props.state.formattedLyric && <input type="button" className="btn btn-default btn-lg btn-block" value="Download" onClick={this.downloadPresentation.bind(this)} /> }
             </div>
           </section>
         </div>

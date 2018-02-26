@@ -35,3 +35,12 @@ export const changeFont = (fontStyle) => {
 
   return action
 }
+
+export const changeFormat = (formatStyle) => {
+  const action = {
+    type: type.FORMAT_STYLE,
+    formatStyle
+  }
+
+  return action
+}
