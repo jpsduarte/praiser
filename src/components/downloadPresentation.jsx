@@ -10,6 +10,28 @@ import { connect } from 'react-redux'
 import pptx from 'pptxgenjs'
 
 class DownloadPresentation extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fadeIn: false,
+      fadeOut: false
+    }
+  }
+
+  handleFadeIn() {
+    if (!this.state.fadeOut && !this.state.fadeIn) {
+      this.setState({ fadeIn: true })
+    }
+    else if (!this.state.fadeOut && this.state.fadeIn) {
+      this.setState({ fadeOut: true })
+      this.setState({ fadeIn: false })
+    }
+    else {
+      this.setState({ fadeOut: false })
+      this.setState({ fadeIn: true })
+    }
+  }
 
   downloadPresentation() {
     let presentation = new pptx()
@@ -117,7 +139,7 @@ class DownloadPresentation extends Component {
             <div className="row">
               <div className="col-md-4">
                 <div className="font">
-                  <div className="style-header">Fonte</div>
+                  <div className="style-header">Fonte <button onClick={this.handleFadeIn.bind(this)}>effect</button></div>
 
                   {this.props.state.fontStyle ? (
                     <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
@@ -127,7 +149,7 @@ class DownloadPresentation extends Component {
                     <div className="style-content default-font">Roboto Light</div>
                   )}
 
-                  <div className="font-options">
+                  <div className={`font-options ${this.state.fadeIn ? 'fadeIn' : ''} ${this.state.fadeOut ? 'fadeOut' : ''}`}>
                     <div className="row">
                       <PresentationFont font="Roboto Light" />
                       <PresentationFont font="Calibri" />
@@ -167,7 +189,7 @@ class DownloadPresentation extends Component {
                     </div>
                   )}
 
-                  <div className="background-options">
+                  <div className={`background-options ${this.state.fadeIn ? 'fadeIn' : ''} ${this.state.fadeOut ? 'fadeOut' : ''}`}>
                     <div className="row">
                       <PresentationBackground bg="#000000" inner="#8393ca"/>
                       <PresentationBackground bg="#f15959" inner="#11f7fa"/>

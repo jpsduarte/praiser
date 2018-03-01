@@ -10,7 +10,7 @@ class PresentationBackground extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div className="col col-md-4">
         <div className="background-card" style={{ backgroundColor: this.props.bg }} onClick={this.selectColor.bind(this)}>
           <div className="background-card-body" style={{ backgroundColor: this.props.inner }}></div>
         </div>

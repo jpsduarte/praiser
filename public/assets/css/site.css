@@ -153,6 +153,7 @@
 
 .font .font-options {
   background: transparent;
+  opacity: 0;
 }
 
 .default-font {
@@ -196,6 +197,7 @@
 
 .background .background-options {
   background: transparent;
+  opacity: 0;
 }
 
 .background-options .background-card {
@@ -245,4 +247,38 @@
 body .popover,
 span.note-icon-caret {
   display: none;
+}
+
+.fadeIn {
+  animation: fadeIn .8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(-65px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut .8s ease-in-out forwards;
+
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-65px);
+    opacity: 0;
+    visibility: hidden;
+  }
 }

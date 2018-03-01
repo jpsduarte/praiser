@@ -10,7 +10,7 @@ class PresentationFont extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div className="col col-md-4">
         <div className="font-card">
           <div className="font-card-body" style={{ fontFamily: this.props.font }} onClick={ this.selectFont.bind(this) }>
             { this.props.font }
