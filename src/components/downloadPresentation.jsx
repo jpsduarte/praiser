@@ -14,22 +14,28 @@ class DownloadPresentation extends Component {
     super(props);
 
     this.state = {
-      fadeIn: false,
-      fadeOut: false
+      component: {
+        background: '',
+        font: ''  
+      }
     }
   }
 
-  handleFadeIn() {
-    if (!this.state.fadeOut && !this.state.fadeIn) {
-      this.setState({ fadeIn: true })
+  handleFontFade() {
+    if (!this.state.component.font || this.state.component.font === 'fadeOut') {
+      this.setState({ component: { font: 'fadeIn' } })
     }
-    else if (!this.state.fadeOut && this.state.fadeIn) {
-      this.setState({ fadeOut: true })
-      this.setState({ fadeIn: false })
+    else if (this.state.component.font == 'fadeIn') {
+      this.setState({ component: { font: 'fadeOut' } })
     }
-    else {
-      this.setState({ fadeOut: false })
-      this.setState({ fadeIn: true })
+  }
+
+  handleBackgroundFade() {
+    if (!this.state.component.background || this.state.component.background === 'fadeOut') {
+      this.setState({ component: { background: 'fadeIn' } })
+    }
+    else if (this.state.component.background == 'fadeIn') {
+      this.setState({ component: { background: 'fadeOut' } })
     }
   }
 
@@ -139,7 +145,7 @@ class DownloadPresentation extends Component {
             <div className="row">
               <div className="col-md-4">
                 <div className="font">
-                  <div className="style-header">Fonte <button onClick={this.handleFadeIn.bind(this)}>effect</button></div>
+                  <div className="style-header">Fonte <button onClick={this.handleFontFade.bind(this)}>effect</button></div>
 
                   {this.props.state.fontStyle ? (
                     <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
@@ -149,7 +155,7 @@ class DownloadPresentation extends Component {
                     <div className="style-content default-font">Roboto Light</div>
                   )}
 
-                  <div className={`font-options ${this.state.fadeIn ? 'fadeIn' : ''} ${this.state.fadeOut ? 'fadeOut' : ''}`}>
+                  <div className={`font-options ${this.state.component.font}`}>
                     <div className="row">
                       <PresentationFont font="Roboto Light" />
                       <PresentationFont font="Calibri" />
@@ -173,7 +179,7 @@ class DownloadPresentation extends Component {
 
               <div className="col-md-4">
                 <div className="background">
-                  <div className="style-header">Background</div>
+                  <div className="style-header">Background <button className="btn-effect" onClick={this.handleBackgroundFade.bind(this)}>Effect</button> </div>
 
                   {this.props.state.backgroundStyle.bg ? (
                     <div className="style-content">
@@ -189,7 +195,7 @@ class DownloadPresentation extends Component {
                     </div>
                   )}
 
-                  <div className={`background-options ${this.state.fadeIn ? 'fadeIn' : ''} ${this.state.fadeOut ? 'fadeOut' : ''}`}>
+                  <div className={`background-options ${this.state.component.background}`}>
                     <div className="row">
                       <PresentationBackground bg="#000000" inner="#8393ca"/>
                       <PresentationBackground bg="#f15959" inner="#11f7fa"/>
