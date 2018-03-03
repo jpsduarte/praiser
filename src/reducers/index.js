@@ -25,9 +25,6 @@ const praiserApp = (state = initialState, action) => {
     case type.FONT_STYLE:
       return changeFont(state, action)
 
-    case type.FONT_STYLE:
-      return changeFormat(state, action)
-
     default:
       return state
   }
