@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { changeFont } from '../../actionsCreators'
 
-class PresentationFont extends Component {
+class FontOptionItem extends Component {
 
   selectFont() {
     this.props.changeFont(this.props.font)
@@ -21,4 +21,4 @@ class PresentationFont extends Component {
   }
 }
 
-export default connect(null, { changeFont })(PresentationFont)
+export default connect(null, { changeFont })(FontOptionItem)

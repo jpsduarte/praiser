@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Header from './header'
-import DownloadPresentation from './downloadPresentation'
-import Footer from './footer'
+import Header from './shared/header'
+import DownloadPresentation from './download/downloadPresentation'
+import Footer from './shared/footer'
 
 class App extends Component {
     render(){

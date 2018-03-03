@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactSummernote from 'react-summernote'
 
 import { connect } from 'react-redux'
-import { formatLyric, addLyric } from '../actionsCreators'
+import { formatLyric, addLyric } from '../../actionsCreators'
 
 import 'react-summernote/dist/react-summernote.css'
 import 'react-summernote/lang/summernote-pt-BR'

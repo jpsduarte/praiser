@@ -1,8 +1,8 @@
 import React from 'react'
-import vagalumeAPI from '../services/vagalumeAPI'
+import vagalumeAPI from '../../services/vagalumeAPI'
 
 import { connect } from 'react-redux'
-import { addLyric } from '../actionsCreators'
+import { addLyric } from '../../actionsCreators'
 
 import 'font-awesome/css/font-awesome.css'
 
@@ -58,7 +58,7 @@ class SearchBar extends React.Component {
             {
               this.state.matches.map(match => match.title &&
                                               <li key={match.id} onClick={(e) => this.musicSelected(match.id)}>
-                                                <a href="#"> {match.band} - {match.title}</a>
+                                                <span> {match.band} - {match.title}</span>
                                               </li>)
             }
           </ul>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { changeFormat } from '../../actionsCreators'
 
-class PresentationFormat extends Component {
+class FormatOptionItem extends Component {
   constructor(props) {
     super(props);
 
@@ -41,4 +41,4 @@ class PresentationFormat extends Component {
   }
 }
 
-export default connect(null, { changeFormat })(PresentationFormat)
+export default connect(null, { changeFormat })(FormatOptionItem)

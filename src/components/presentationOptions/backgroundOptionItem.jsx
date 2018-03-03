@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { changeBackground } from '../../actionsCreators'
 
-class PresentationBackground extends Component {
+class BackgroundOptionItem extends Component {
 
   selectColor() {
     this.props.changeBackground({ bg: this.props.bg, inner: this.props.inner })
@@ -19,4 +19,4 @@ class PresentationBackground extends Component {
   }
 }
 
-export default connect(null, { changeBackground })(PresentationBackground)
+export default connect(null, { changeBackground })(BackgroundOptionItem)

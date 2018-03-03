@@ -7,18 +7,18 @@ class Header extends React.Component {
         <a className="navbar-brand" href="">
           <img alt="" src="../assets/img/logo.png" width="140" />
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
           aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Explore</a>
+            <li className="nav-item">
+              <span className="nav-link">Explore</span>
             </li>
-            <li class="nav-item">
-              <a class="btn btn-success" href="#">Doar</a>
+            <li className="nav-item">
+              <button className="btn btn-success">Doar</button>
             </li>
           </ul>
         </div>
