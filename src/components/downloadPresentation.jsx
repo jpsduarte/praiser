@@ -41,8 +41,8 @@ class DownloadPresentation extends Component {
   }
 
   addFormat(pptx) {
-    let slideFormat = this.props.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3'
-    pptx.setLayout('LAYOUT_4x3')
+    let slideFormat = this.props.state.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3'
+    pptx.setLayout(slideFormat)
   }
 
   addMaster(pptx) {
@@ -80,7 +80,7 @@ class DownloadPresentation extends Component {
 
     let slidePages = this.props.state.formattedLyric.split('<hr>')
 
-    this.addMaster(pptx)
+    this.addFormat(pptx)
 
     this.addMaster(pptx)
 

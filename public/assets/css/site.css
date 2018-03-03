@@ -227,11 +227,13 @@
   opacity: .6;
 }
 
-/* .format .wide:hover, */
-.format .wide:active,
-/* .format .square:hover, */
-.format .square:active {
+.format .wide:hover,
+.format .wide.active,
+.format .square:hover,
+.format .square.active {
   opacity: 1;
+  border-color: #7d01a1;
+  color: #7d01a1;
 }
 
 .format .wide {

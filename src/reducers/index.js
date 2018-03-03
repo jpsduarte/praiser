@@ -1,14 +1,14 @@
 import * as type from '../actionTypes'
 
 const initialState = {
-  lyric: 'Roboto Light',
+  lyric: '',
   formattedLyric: '',
   backgroundStyle: {
     bg: '#000000',
     inner: '#8393ca'
   },
-  fontStyle: '',
-  formatStyle: ''
+  fontStyle: 'Roboto Light',
+  formatStyle: '16:9'
 }
 
 const praiserApp = (state = initialState, action) => {
@@ -24,6 +24,9 @@ const praiserApp = (state = initialState, action) => {
 
     case type.FONT_STYLE:
       return changeFont(state, action)
+
+    case type.FORMAT_STYLE:
+      return changeFormat(state, action)
 
     default:
       return state
