@@ -1,11 +1,11 @@
 import * as type from '../actionTypes'
 
 const initialState = {
-  lyric: '',
+  lyric: 'Roboto Light',
   formattedLyric: '',
   backgroundStyle: {
-    bg: '',
-    inner: ''
+    bg: '#000000',
+    inner: '#8393ca'
   },
   fontStyle: '',
   formatStyle: ''
