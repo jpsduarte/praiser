@@ -154,6 +154,21 @@
 .font .font-options {
   background: transparent;
   opacity: 0;
+  display: none;
+}
+
+.font .font-options.fadeIn {
+  animation: fadeIn .5s ease-out forwards;
+  display: block;
+}
+
+.font .font-options.fadeOut {
+  animation: fadeOut .5s ease-in forwards;
+  display: block;
+}
+
+.font .font-options.fadeOut.out {
+  display: none;
 }
 
 .default-font {
@@ -198,6 +213,21 @@
 .background .background-options {
   background: transparent;
   opacity: 0;
+  display: none;
+}
+
+.background .background-options.fadeIn {
+  animation: fadeIn .5s ease-out forwards;
+  display: block;
+}
+
+.background .background-options.fadeOut {
+  animation: fadeOut .5s ease-in forwards;
+  display: block;
+}
+
+.background .background-options.fadeOut.out {
+  display: none;
 }
 
 .background-options .background-card {
@@ -266,6 +296,7 @@
   color: #ffffff;
   text-transform: uppercase;
   font-weight: 600;
+  margin-left: 15px;
 }
 
 /* Overwrite summernote classes */
@@ -273,10 +304,6 @@
 body .popover,
 span.note-icon-caret {
   display: none;
-}
-
-.fadeIn {
-  animation: fadeIn .5s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -291,20 +318,22 @@ span.note-icon-caret {
   }
 }
 
-.fadeOut {
-  animation: fadeOut .5s ease-in forwards;
-
-}
-
 @keyframes fadeOut {
   0% {
+    display: inline-flex;
     transform: translateY(0);
     opacity: 1;
   }
 
-  100% {
+  99% {
+    display: inline-flex;
     transform: translateY(-65px);
     opacity: 0;
-    visibility: hidden;
+  }
+
+  100% {
+    display: none;
+    transform: translateY(-65px);
+    opacity: 0;
   }
 }

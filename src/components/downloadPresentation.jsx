@@ -23,20 +23,28 @@ class DownloadPresentation extends Component {
   }
 
   handleFontFade() {
-    if (!this.state.component.font || this.state.component.font === 'fadeOut') {
+    if (!this.state.component.font || this.state.component.font === 'fadeOut out') {
       this.setState({ component: { font: 'fadeIn' } })
     }
     else if (this.state.component.font === 'fadeIn') {
       this.setState({ component: { font: 'fadeOut' } })
+
+      setTimeout(() => {
+        this.setState({ component: { font: 'fadeOut out' } })
+      }, 550)
     }
   }
 
   handleBackgroundFade() {
-    if (!this.state.component.background || this.state.component.background === 'fadeOut') {
+    if (!this.state.component.background || this.state.component.background === 'fadeOut out') {
       this.setState({ component: { background: 'fadeIn' } })
     }
     else if (this.state.component.background === 'fadeIn') {
       this.setState({ component: { background: 'fadeOut' } })
+
+      setTimeout(() => {
+        this.setState({ component: { background: 'fadeOut out' } })
+      }, 550)
     }
   }
 
