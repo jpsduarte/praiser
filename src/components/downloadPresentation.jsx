@@ -6,8 +6,9 @@ import PresentationFont from './presentationOptions/presentationFont'
 import PresentationFormat from './presentationOptions/presentationFormat'
 
 import { connect } from 'react-redux'
-
 import pptx from 'pptxgenjs'
+
+import 'font-awesome/css/font-awesome.css'
 
 class DownloadPresentation extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class DownloadPresentation extends Component {
     this.state = {
       component: {
         background: '',
-        font: ''  
+        font: ''
       }
     }
   }
@@ -48,6 +49,12 @@ class DownloadPresentation extends Component {
     let slideFormat = this.props.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3'
     presentation.getLayout(slideFormat)
 
+    this.addPage(presentation, slidePages)
+
+    presentation.save(`NomeMusica`)
+  }
+
+  addPage(presentation, slidePages) {
     for (let page = 0; page < slidePages.length; page++) {
       let slide = presentation.addNewSlide()
 
@@ -66,65 +73,6 @@ class DownloadPresentation extends Component {
         isTextBox: true
       })
     }
-
-    presentation.save(`NomeMusica`)
-  }
-
-  tempDownload() {
-    // for (var i = 0; i < slidePages.length; i++) {
-    //   //var slide = pptx.addNewSlide('MASTER_SLIDE');
-    //   var slide = pptx.addNewSlide()
-    //   //slide.bkgd = 'F1F1F1';
-    //   //slide.color = 'red';
-    //   //slide.bkgd = "#CCCCCC";
-    //   //slide.background = "#CCCCCC";
-
-    //   var slideText = slidePages[i]
-    //   var fontSize = 37
-    //   //size
-    //   if (slideText.indexOf('<h1>') != -1)
-    //   {
-    //     fontSize = 58
-    //   }
-    //   else if (slideText.indexOf('<h2>') != -1) {
-    //     fontSize = 52
-    //   }
-    //   else if (slideText.indexOf('<h3>') != -1) {
-    //     fontSize = 46
-    //   }
-    //   else if (slideText.indexOf('<h4>') != -1) {
-    //     fontSize = 39
-    //   }
-    //   else if (slideText.indexOf('<h5>') != -1) {
-    //     fontSize = 32
-    //   }
-    //   else if (slideText.indexOf('<h6>') != -1) {
-    //     fontSize = 26
-    //   }
-
-    //   //format text
-    //   slideText = slideText.replace('<br/>', '\n')
-    //   slideText = slideText.replace('<br />', '\n')
-    //   slideText = slideText.replace(new RegExp('\\<.*?>', 'gm'), '')
-
-    //   slide.addText(slideText,
-    //   {
-    //     x: 0,
-    //     y: 0,
-    //     font_face: 'arial',
-    //     align:'c',
-    //     valign: 'middle',
-    //     margin:5,
-    //     h: '100%',
-    //     fill: 'CCCCCC',
-    //     font_size: fontSize,
-    //     color: '000000'
-    //   });
-
-    //   slide.addText(slideText)
-    // }
-
-    // pptx.save('Demo-Simple')
   }
 
   render() {
@@ -145,14 +93,19 @@ class DownloadPresentation extends Component {
             <div className="row">
               <div className="col-md-4">
                 <div className="font">
-                  <div className="style-header">Fonte <button onClick={this.handleFontFade.bind(this)}>effect</button></div>
+                  <div className="style-header">
+                    Fonte
+                    <button className="badge btn-toggle-option" onClick={this.handleFontFade.bind(this)}>
+                      {this.state.component.font === 'fadeOut' || !this.state.component.font ? (<i class="fa fa-angle-double-down"></i>) : (<i class="fa fa-angle-double-up"></i>)}
+                    </button>
+                  </div>
 
                   {this.props.state.fontStyle ? (
-                    <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
-                      { this.props.state.fontStyle }
-                    </div>
-                  ) : (
-                    <div className="style-content default-font">Roboto Light</div>
+                      <div className="style-content" style={{ fontFamily: this.props.state.fontStyle }}>
+                        { this.props.state.fontStyle }
+                      </div>
+                    ) : (
+                      <div className="style-content default-font">Roboto Light</div>
                   )}
 
                   <div className={`font-options ${this.state.component.font}`}>
@@ -179,20 +132,25 @@ class DownloadPresentation extends Component {
 
               <div className="col-md-4">
                 <div className="background">
-                  <div className="style-header">Background <button className="btn-effect" onClick={this.handleBackgroundFade.bind(this)}>Effect</button> </div>
+                  <div className="style-header">
+                    Background
+                    <button className="badge btn-toggle-option" onClick={this.handleBackgroundFade.bind(this)}>
+                      {this.state.component.background === 'fadeOut' || !this.state.component.background ? (<i class="fa fa-angle-double-down"></i>) : (<i class="fa fa-angle-double-up"></i>)}
+                    </button>
+                  </div>
 
                   {this.props.state.backgroundStyle.bg ? (
-                    <div className="style-content">
-                      <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
-                        <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
+                      <div className="style-content">
+                        <div className="primary-background" style={{ backgroundColor: this.props.state.backgroundStyle.bg }}>
+                          <div className="secondary-background" style={{ backgroundColor: this.props.state.backgroundStyle.inner }}></div>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="style-content">
-                      <div className="primary-background default-bg">
-                        <div className="secondary-background default-inner"></div>
+                    ) : (
+                      <div className="style-content">
+                        <div className="primary-background default-bg">
+                          <div className="secondary-background default-inner"></div>
+                        </div>
                       </div>
-                    </div>
                   )}
 
                   <div className={`background-options ${this.state.component.background}`}>

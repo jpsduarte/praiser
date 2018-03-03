@@ -242,6 +242,18 @@
   padding: 1px 6px;
 }
 
+.style-header .btn-toggle-option {
+  background:  #7d01a1;
+  color:#fff;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  float: right;
+}
+
+.style-header .btn-toggle-option .fa {
+  font-size: 16px;
+}
 /* Overwrite summernote classes */
 
 body .popover,
