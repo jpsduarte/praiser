@@ -6,7 +6,7 @@ import PresentationFont from './presentationOptions/presentationFont'
 import PresentationFormat from './presentationOptions/presentationFormat'
 
 import { connect } from 'react-redux'
-import pptx from 'pptxgenjs'
+import pptxjs from 'pptxgenjs'
 
 import 'font-awesome/css/font-awesome.css'
 
@@ -26,7 +26,7 @@ class DownloadPresentation extends Component {
     if (!this.state.component.font || this.state.component.font === 'fadeOut') {
       this.setState({ component: { font: 'fadeIn' } })
     }
-    else if (this.state.component.font == 'fadeIn') {
+    else if (this.state.component.font === 'fadeIn') {
       this.setState({ component: { font: 'fadeOut' } })
     }
   }
@@ -35,44 +35,58 @@ class DownloadPresentation extends Component {
     if (!this.state.component.background || this.state.component.background === 'fadeOut') {
       this.setState({ component: { background: 'fadeIn' } })
     }
-    else if (this.state.component.background == 'fadeIn') {
+    else if (this.state.component.background === 'fadeIn') {
       this.setState({ component: { background: 'fadeOut' } })
     }
   }
 
-  downloadPresentation() {
-    let presentation = new pptx()
-    presentation.setBrowser(true)
-
-    let slidePages = this.props.state.formattedLyric.split('<hr>')
-
+  addFormat(pptx) {
     let slideFormat = this.props.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3'
-    presentation.getLayout(slideFormat)
+    pptx.setLayout('LAYOUT_4x3')
+  }
 
-    this.addPage(presentation, slidePages)
-
-    presentation.save(`NomeMusica`)
+  addMaster(pptx) {
+    pptx.defineSlideMaster({
+      title: 'Master',
+      bkgd: this.props.state.backgroundStyle.bg
+    })
   }
 
   addPage(presentation, slidePages) {
     for (let page = 0; page < slidePages.length; page++) {
-      let slide = presentation.addNewSlide()
+      if (!slidePages[page]) return
 
-      slide.back = this.props.state.backgroundStyle.bg
+      let slide = presentation.addNewSlide('Master')
       slide.color = this.props.state.backgroundStyle.inner.replace('#','')
 
-      slide.addText(slidePages[page], {
-        x: 0,
-        y: 2,
-        w:'100%',
-        h: '10%',
-        align:'left',
+      const options = {
+        x: '10%',
+        y: '15%',
+        w: '80%',
+        h: "70%",
+        autoFit: true,
         valign: 'middle',
-        fontSize: 24,
         fontFace: this.props.state.fontStyle,
-        isTextBox: true
-      })
+        fontSize: 16
+      }
+
+      slide.addText(slidePages[page], options)
     }
+  }
+
+  downloadPresentation() {
+    let pptx = new pptxjs()
+    pptx.setBrowser(true)
+
+    let slidePages = this.props.state.formattedLyric.split('<hr>')
+
+    this.addMaster(pptx)
+
+    this.addMaster(pptx)
+
+    this.addPage(pptx, slidePages)
+
+    pptx.save(`NomeMusica`)
   }
 
   render() {
@@ -96,7 +110,7 @@ class DownloadPresentation extends Component {
                   <div className="style-header">
                     Fonte
                     <button className="badge btn-toggle-option" onClick={this.handleFontFade.bind(this)}>
-                      {this.state.component.font === 'fadeOut' || !this.state.component.font ? (<i class="fa fa-angle-double-down"></i>) : (<i class="fa fa-angle-double-up"></i>)}
+                      {this.state.component.font === 'fadeOut' || !this.state.component.font ? (<i className="fa fa-angle-double-down"></i>) : (<i className="fa fa-angle-double-up"></i>)}
                     </button>
                   </div>
 
@@ -135,7 +149,7 @@ class DownloadPresentation extends Component {
                   <div className="style-header">
                     Background
                     <button className="badge btn-toggle-option" onClick={this.handleBackgroundFade.bind(this)}>
-                      {this.state.component.background === 'fadeOut' || !this.state.component.background ? (<i class="fa fa-angle-double-down"></i>) : (<i class="fa fa-angle-double-up"></i>)}
+                      {this.state.component.background === 'fadeOut' || !this.state.component.background ? (<i className="fa fa-angle-double-down"></i>) : (<i className="fa fa-angle-double-up"></i>)}
                     </button>
                   </div>
 
