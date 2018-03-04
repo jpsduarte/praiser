@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import SearchBar from '../search/searchBar'
 import LyricEditor from '../editor/lyricEditor';
-import FormatOptions from '../presentationOptions/formatOptionItem'
-import FontOptions from '../presentationOptions/fontOptions'
-import BackgroundOptions from '../presentationOptions/backgroundOptions'
+import FormatOptions from '../pptOptions/formatOptionItem'
+import FontOptions from '../pptOptions/fontOptions'
+import BackgroundOptions from '../pptOptions/backgroundOptions'
 
 import { connect } from 'react-redux'
 import pptxjs from 'pptxgenjs'
