@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import SearchBar from '../search/searchBar'
 import LyricEditor from '../editor/lyricEditor';
 import FormatOptions from '../pptOptions/formatOptionItem'
@@ -6,58 +7,19 @@ import FontOptions from '../pptOptions/fontOptions'
 import BackgroundOptions from '../pptOptions/backgroundOptions'
 
 import { connect } from 'react-redux'
-import pptxjs from 'pptxgenjs'
+import pptxDownloader from '../../services/pptxDownolader'
 
 import 'font-awesome/css/font-awesome.css'
 
 class DownloadPresentation extends Component {
-  addFormat(pptx) {
-    let slideFormat = this.props.state.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3'
-    pptx.setLayout(slideFormat)
-  }
-
-  addMaster(pptx) {
-    pptx.defineSlideMaster({
-      title: 'Master',
-      bkgd: this.props.state.backgroundStyle.bg
-    })
-  }
-
-  addPage(presentation, slidePages) {
-    for (let page = 0; page < slidePages.length; page++) {
-      if (!slidePages[page]) return
-
-      let slide = presentation.addNewSlide('Master')
-      slide.color = this.props.state.backgroundStyle.inner.replace('#','')
-
-      const options = {
-        x: '10%',
-        y: '15%',
-        w: '80%',
-        h: "70%",
-        autoFit: true,
-        valign: 'middle',
-        fontFace: this.props.state.fontStyle,
-        fontSize: 16
-      }
-
-      slide.addText(slidePages[page], options)
-    }
-  }
 
   downloadPresentation() {
-    let pptx = new pptxjs()
-    pptx.setBrowser(true)
-
-    let slidePages = this.props.state.formattedLyric.split('<hr>')
-
-    this.addFormat(pptx)
-
-    this.addMaster(pptx)
-
-    this.addPage(pptx, slidePages)
-
-    pptx.save(`NomeMusica`)
+    pptxDownloader(this.props.state.formattedLyric.split('<hr>'), {
+      bg: this.props.state.backgroundStyle.bg,
+      format: this.props.state.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3',
+      inner: this.props.state.backgroundStyle.inner,
+      fontFace: this.props.state.fontStyle
+    })
   }
 
   render() {
