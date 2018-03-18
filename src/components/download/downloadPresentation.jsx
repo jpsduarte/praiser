@@ -36,7 +36,7 @@ class DownloadPresentation extends Component {
 
           <LyricEditor />
 
-          <section className="presentation-style">
+          { this.props.state.formattedLyric && <section className="presentation-style">
             <div className="row">
               <div className="col-md-4">
                 <FontOptions />
@@ -57,7 +57,7 @@ class DownloadPresentation extends Component {
                 </div>
               </div>
             </div>
-          </section>
+          </section> }
 
           <section className="row download">
             <div className="col-md-4 offset-md-4">

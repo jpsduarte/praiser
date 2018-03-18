@@ -29,11 +29,11 @@ class BackgroundOptions extends Component {
       <div className="background">
         <div className="style-header">
           Background
-          <button className="badge btn-toggle-option" onClick={this.handleAnimation.bind(this)}>
+          <div className="btn-toggle-option" onClick={this.handleAnimation.bind(this)}>
             {this.state.animation === 'fadeOut out' || !this.state.animation ? (
             <i className="fa fa-angle-double-down"></i>) : (
             <i className="fa fa-angle-double-up"></i>)}
-          </button>
+          </div>
         </div>
 
         {this.props.state.backgroundStyle.bg ? (

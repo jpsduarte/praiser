@@ -29,11 +29,11 @@ class FontOptions extends Component {
       <div className="font">
         <div className="style-header">
           Fonte
-          <button className="badge btn-toggle-option" onClick={this.handleAnimation.bind(this)}>
+          <div className="btn-toggle-option" onClick={this.handleAnimation.bind(this)}>
             {this.state.animation === 'fadeOut out' || !this.state.animation ? (
             <i className="fa fa-angle-double-down"></i>) : (
             <i className="fa fa-angle-double-up"></i>)}
-          </button>
+          </div>
         </div>
 
         {this.props.state.fontStyle ? (

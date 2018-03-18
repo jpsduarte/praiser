@@ -149,6 +149,7 @@
   align-items: center;
   padding: 10px;
   height: 50px;
+  border: 2px solid #f3f3f3;
 }
 
 .font .font-options {
@@ -183,6 +184,12 @@
   margin: 7px 0;
   height: 60px;
   border-radius: 3px;
+  cursor: pointer;
+}
+
+.font-options .font-card:hover {
+  background: #7d01a1;
+  color: #fff;
 }
 
 .font-options .font-card-body {
@@ -193,7 +200,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
+  height: 40px;
   width: 100%;
 }
 
@@ -238,6 +245,7 @@
   margin: 7px 0;
   height: 80px;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .background-options .background-card-body {
@@ -255,6 +263,7 @@
   border: 1.8px solid black;
   border-radius: 4px;
   opacity: .6;
+  cursor: pointer;
 }
 
 .format .wide:hover,
@@ -275,12 +284,13 @@
 }
 
 .style-header .btn-toggle-option {
-  background:  #7d01a1;
-  color:#fff;
-  border: none;
-  border-radius: 50%;
-  text-align: center;
+  background: #7d01a1;
+  color: #fff;
   float: right;
+  cursor: pointer;
+  text-align: center;
+  width: 26px;
+  border-radius: 7px;
 }
 
 .style-header .btn-toggle-option .fa {

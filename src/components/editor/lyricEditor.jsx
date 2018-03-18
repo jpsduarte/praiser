@@ -47,18 +47,22 @@ class LyricEditor extends Component {
 
   render() {
     return (
-      <ReactSummernote
-        value={this.state.lyric}
-        options={{
-          lang: 'pt-BR',
-          height: 350,
-          dialogsInBody: true,
-          toolbar: [
-            ['font', ['fontsize', 'bold', 'italic', 'underline']],
-            ['para', ['paragraph']]
-          ]
-        }}
-        onChange={this.onChange.bind(this)} />
+      <div>
+        { this.state.lyric &&
+
+          <ReactSummernote
+            value={this.state.lyric}
+            options={{
+              lang: 'pt-BR',
+              height: 350,
+              dialogsInBody: true,
+              toolbar: [
+                ['font', ['fontsize', 'bold', 'italic', 'underline']],
+                ['para', ['paragraph']]
+              ]
+            }}
+            onChange={this.onChange.bind(this)} /> }
+      </div>
     )
   }
 }
