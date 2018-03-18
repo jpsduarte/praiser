@@ -1,6 +1,5 @@
-let styleOptions = defaultStyles()
-
-function slideOptions(htmlJson) {
+function slideOptions(htmlJson, styleOptions) {
+  styleOptions = styleOptions || defaultStyles()
   let htmlElement = htmlJson[0]
 
   if(htmlElement.type === 'text'){
@@ -35,7 +34,7 @@ function slideOptions(htmlJson) {
       break
   }
 
-  return slideOptions(htmlElement.children)
+  return slideOptions(htmlElement.children, styleOptions)
 }
 
 function defaultStyles() {

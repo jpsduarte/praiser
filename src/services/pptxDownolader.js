@@ -17,18 +17,17 @@ export default function(htmlSlides, options) {
   pptx.setLayout(options.format)
   pptx.defineSlideMaster({ title: 'Master', bkgd: options.bg })
 
-  options = Object.assign(options, defaultPositions())
-
   htmlSlides.map((htmlSlideItem) => {
     let slide = pptx.addNewSlide('Master')
     slide.color = options.inner.replace('#','')
 
     const lstHtmlJson = parse(htmlSlideItem)
 
-    let a = pptxSlideOption(lstHtmlJson)
-    options = Object.assign(options, defaultPositions(), a.styles)
+    const textStyles = pptxSlideOption(lstHtmlJson)
 
-    slide.addText(a.text, options)
+    const textOptions = Object.assign({}, options, defaultPositions(), textStyles.styles)
+
+    slide.addText(textStyles.text, textOptions)
   })
 
   pptx.save(`NomeMusica`)
