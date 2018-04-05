@@ -57,7 +57,7 @@ class SearchBar extends React.Component {
           <ul>
             {
               this.state.matches.map(match => match.title &&
-                                              <li key={match.id} onClick={(e) => this.musicSelected(match.id)}>
+                                              <li key={match.id} style={{cursor: "pointer"}} onClick={(e) => this.musicSelected(match.id)}>
                                                 <span> {match.band} - {match.title}</span>
                                               </li>)
             }
