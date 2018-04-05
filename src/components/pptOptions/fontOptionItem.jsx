@@ -11,8 +11,8 @@ class FontOptionItem extends Component {
   render() {
     return (
       <div className="col col-md-4">
-        <div className="font-card">
-          <div className="font-card-body" style={{ fontFamily: this.props.font }} onClick={ this.selectFont.bind(this) }>
+        <div className="font-card" onClick={ this.selectFont.bind(this) }>
+          <div className="font-card-body" style={{ fontFamily: this.props.font }}>
             { this.props.font }
           </div>
         </div>

@@ -59,7 +59,7 @@
 }
 
 .music-search {
-  margin-top: 150px;
+  margin-top: 50px;
   margin-bottom: 10px;
 }
 
@@ -316,6 +316,20 @@ span.note-icon-caret {
   display: none;
 }
 
+.dropdown-menu li {
+  text-align: center
+}
+
+.dropdown-menu li:hover {
+  background: lightgrey;
+}
+
+.dropdown-menu li a {
+  color: #000;
+}
+
+/* CSS Animation Keyframes*/
+
 @keyframes fadeIn {
   0% {
     transform: translateY(-65px);
@@ -347,3 +361,5 @@ span.note-icon-caret {
     opacity: 0;
   }
 }
+
+
