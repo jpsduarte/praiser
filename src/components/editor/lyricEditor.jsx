@@ -31,13 +31,19 @@ class LyricEditor extends Component {
   }
 
   formatSlides(lyric) {
-    let slides = lyric.split('\n\n')
+    let lyricLines = lyric.replace(/\n\n/g, '\n')
+    let slides = lyricLines.split('\n')
 
-    slides = slides.map((page) => {
-      return `${page} <hr>`
+    slides.forEach((element, index) => {
+      if (index > 0 && index % 4 == 0) {
+        slides[index] += '<hr>'
+      }
+      else {
+        slides[index] += ' \n'
+      }
     })
 
-    return slides.join('\n\n')
+    return slides.toString().replace(/,/g, '')
   }
 
   onChange(lyric) {
