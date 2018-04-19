@@ -50,8 +50,10 @@
 
 /* Home */
 
-.step {
+.row.step {
   height: 20px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .step div {
