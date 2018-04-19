@@ -7,12 +7,12 @@ export default class VagalumeAPI {
     return `https://api.vagalume.com.br/${endpoint}`
   }
 
-  getArtMus(parameters){
+  getArtMus(parameters){ 
     let CancelToken = axios.CancelToken
     let source = CancelToken.source()
 
     return axios.get(this.buildURL('search.artmus?'), {
-      params: {
+      params: { 
         q: parameters.q,
         limit: parameters.limit
       },
