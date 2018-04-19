@@ -4,7 +4,7 @@ import LyricEditor from './lyricEditor';
 
 import { connect } from 'react-redux'
 
-import pptx from 'pptxgenjs'
+import pptx from 'pptxgenjs' 
 
 class Home extends React.Component {
 
