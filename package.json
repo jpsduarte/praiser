@@ -1,12 +1,14 @@
 {
   "name": "praiser",
   "version": "0.1.0",
+  "homepage": "https://jpsduarte.github.io/praiser",
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0",
     "font-awesome": "^4.7.0",
     "fs": "0.0.1-security",
+    "gh-pages": "^1.1.0",
     "himalaya": "^1.0.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
@@ -21,6 +23,8 @@
     "redux": "^3.7.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom"
