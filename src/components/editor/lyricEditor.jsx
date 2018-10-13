@@ -35,7 +35,7 @@ class LyricEditor extends Component {
     let slides = lyricLines.split('\n')
 
     slides.forEach((element, index) => {
-      if (index > 0 && index % 4 == 0) {
+      if (index > 0 && index % 4 === 0) {
         slides[index] += '<hr>'
       }
       else {
