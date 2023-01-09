@@ -16,7 +16,7 @@ export default class VagalumeAPI {
         q: parameters.q,
         limit: parameters.limit
       },
-      timeout: 1500,
+      //timeout: 1500,
       cancelToken: source.token
     }).then(res => {
       return res.data.response.docs

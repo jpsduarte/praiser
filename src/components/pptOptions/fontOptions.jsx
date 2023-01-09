@@ -46,21 +46,21 @@ class FontOptions extends Component {
 
         <div className={`font-options ${this.state.animation}`}>
           <div className="row">
-            <FontOptionItem font="Roboto Light" />
-            <FontOptionItem font="Calibri" />
+            <FontOptionItem font="Arial" />
             <FontOptionItem font="Arial Black" />
+            <FontOptionItem font="Calibri" />
           </div>
 
           <div className="row">
-            <FontOptionItem font="Roboto Light" />
+            <FontOptionItem font="Calibri Light" />
             <FontOptionItem font="Calibri" />
-            <FontOptionItem font="Arial Black" />
+            <FontOptionItem font="Open Sans" />
           </div>
 
           <div className="row">
+            <FontOptionItem font="Roboto" />
             <FontOptionItem font="Roboto Light" />
-            <FontOptionItem font="Calibri" />
-            <FontOptionItem font="Arial Black" />
+            <FontOptionItem font="Times New Roman" />
           </div>
         </div>
       </div>

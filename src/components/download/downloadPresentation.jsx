@@ -18,7 +18,8 @@ class DownloadPresentation extends Component {
       bg: this.props.state.backgroundStyle.bg,
       format: this.props.state.formatStyle === '16:9' ? 'LAYOUT_16x9' : 'LAYOUT_4x3',
       inner: this.props.state.backgroundStyle.inner,
-      fontFace: this.props.state.fontStyle
+      fontFace: this.props.state.fontStyle,
+      fontSize: 42
     })
   }
 

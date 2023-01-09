@@ -27,6 +27,11 @@ export default function(htmlSlides, options) {
 
     const textOptions = Object.assign({}, options, defaultPositions(), textStyles.styles)
 
+    //workaround to define font size & alignment
+    //todo find the correct place to do this
+    textOptions.fontSize = 32
+    textOptions.align = "center"
+
     slide.addText(textStyles.text, textOptions)
   })
 
